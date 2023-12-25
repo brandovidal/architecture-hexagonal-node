@@ -1,0 +1,11 @@
+node_modules/
+
+dist/
+public/
+
+__test__/
+e2e/
+
+**/*.config.ts
+**/*.js
+**/*.d.ts
