@@ -1,6 +1,6 @@
 import type { Transaction } from './Transaction'
 
 export interface TransactionRepository {
-  findAll: () => Promise<Transaction[]>
+  searchAll: () => Promise<Transaction[]>
   save: (transaction: Transaction) => Promise<void>
 }

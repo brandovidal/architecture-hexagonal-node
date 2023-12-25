@@ -6,6 +6,6 @@ export default class TransactionReader {
   constructor (@inject('SqlLiteTransactionRepository') private readonly repository: SqlLiteTransactionRepository) {}
 
   async run () {
-    return await this.repository.findAll()
+    return await this.repository.searchAll()
   }
 }

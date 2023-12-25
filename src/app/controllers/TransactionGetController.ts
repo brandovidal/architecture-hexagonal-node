@@ -8,10 +8,10 @@ import { inject, injectable } from 'inversify'
 
 @injectable()
 export default class TransactionGetController implements Controller {
-  constructor (@inject('TransactionReader') private readonly service: TransactionReader) {}
+  constructor (@inject('TransactionReader') private readonly reader: TransactionReader) {}
 
   async run (_req: Request, res: Response): Promise<void> {
-    const data = await this.service.run()
+    const data = await this.reader.run()
     res.status(httpStatus.OK).send({
       success: true,
       message: 'Transactions retrieved successfully',

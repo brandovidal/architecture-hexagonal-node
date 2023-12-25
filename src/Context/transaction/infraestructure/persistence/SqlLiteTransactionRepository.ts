@@ -1,15 +1,15 @@
 import { injectable } from 'inversify'
 
-import type { Transaction } from '../../domain/Transaction'
+import { Transaction } from '../../domain/Transaction'
 import type { TransactionRepository } from '../../domain/TransactionRepository'
 
 import prisma from '../../../../../prisma'
 
 @injectable()
 export default class SqlLiteTransactionRepository implements TransactionRepository {
-  public async findAll (): Promise<Transaction[]> {
-    const data = await prisma.transaction.findMany()
-    return data
+  public async searchAll (): Promise<Transaction[]> {
+    const transactions = await prisma.transaction.findMany()
+    return transactions.map(transaction => Transaction.fromPrimitives(transaction))
   }
 
   public async save (transaction: Transaction): Promise<void> {

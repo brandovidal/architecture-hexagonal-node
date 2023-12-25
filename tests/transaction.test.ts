@@ -10,7 +10,7 @@ import TransactionCreator from '../src/Context/transaction/application/Transacti
 
 class MockTransactionRepository implements TransactionRepository {
   private readonly transactions: Transaction[] = []
-  public async findAll (): Promise<Transaction[]> {
+  public async searchAll (): Promise<Transaction[]> {
     return this.transactions
   }
 
