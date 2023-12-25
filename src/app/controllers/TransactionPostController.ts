@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import type { Request, Response } from 'express'
 import type { Controller } from './Controller'
 
@@ -6,29 +7,29 @@ import TransactionCreator from '../../Context/transaction/application/Transactio
 import httpStatus from 'http-status'
 import { inject, injectable } from 'inversify'
 
-interface CreateTransactionRequest {
-  id: number
-  sellerDomain: string
-  kind: string
-  invoiceNumber: number
-  amount: number
-  total: number
-  status: string
-  userCreated: string
-  userUpdated: string
-  createdAt: Date
-  updatedAt: Date
+interface TransactionPostRequest extends Request {
+  body: {
+    id: number
+    seller_domain: string
+    kind: string
+    invoice_number: number
+    amount: number
+    total: number
+    status: string
+    user_created: string
+    user_updated: string
+  }
 }
 
 @injectable()
 export default class TransactionPostController implements Controller {
   constructor (@inject('TransactionCreator') private readonly creator: TransactionCreator) {}
 
-  async run (req: Request, res: Response): Promise<void> {
+  async run (req: TransactionPostRequest, res: Response): Promise<void> {
     try {
-      const { id, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, createdAt, updatedAt } = req.body as CreateTransactionRequest
+      const { seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated } = req.body
 
-      await this.creator.run(id, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, createdAt, updatedAt)
+      await this.creator.run(seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated)
 
       res.status(httpStatus.CREATED).send({
         success: true,

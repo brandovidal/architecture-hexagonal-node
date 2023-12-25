@@ -7,30 +7,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// enum KindTransactionType {
-//   wallet,
-//   culqi,
-//   bonus
-// }
-
 model Transaction {
   id Int @id @default(autoincrement())
 
-  sellerDomain String
+  seller_domain String
   kind          String
 
-  invoiceNumber Int @default(0)
+  invoice_number Int @default(0)
 
   amount Float
   total  Float @default(0.00)
 
   status String @default("PENDING")
 
-  userCreated  String @default("")
-  userUpdated String @default("")
+  user_created  String @default("")
+  user_updated String @default("")
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
 
   @@map("transactions")
 }

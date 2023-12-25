@@ -43,31 +43,51 @@ export class Transaction {
     this.updatedAt = updatedAt
   }
 
+  static create (sellerDomain: string, kind: string, invoiceNumber: number, amount: number, total: number, status: string, userCreated: string, userUpdated: string) {
+    return new Transaction(0, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, new Date(), new Date())
+  }
+
   static fromPrimitives (plainData: {
     id: number
-    sellerDomain: string
+    seller_domain: string
     kind: string
-    invoiceNumber: number
+    invoice_number: number
     amount: number
     total: number
     status: string
-    userCreated: string
-    userUpdated: string
-    createdAt: Date
-    updatedAt: Date
+    user_created: string
+    user_updated: string
+    created_at: Date
+    updated_at: Date
   }): Transaction {
     return new Transaction(
       plainData.id,
-      plainData.sellerDomain,
+      plainData.seller_domain,
       plainData.kind,
-      plainData.invoiceNumber,
+      plainData.invoice_number,
       plainData.amount,
       plainData.total,
       plainData.status,
-      plainData.userCreated,
-      plainData.userUpdated,
-      plainData.createdAt,
-      plainData.updatedAt
+      plainData.user_created,
+      plainData.user_updated,
+      plainData.created_at,
+      plainData.updated_at
     )
+  }
+
+  toPrimitives () {
+    return {
+      id: this.id,
+      seller_domain: this.sellerDomain,
+      kind: this.kind,
+      invoice_number: this.invoiceNumber,
+      amount: this.amount,
+      total: this.total,
+      status: this.status,
+      user_created: this.userCreated,
+      user_updated: this.userUpdated,
+      created_at: this.createdAt,
+      updated_at: this.updatedAt
+    }
   }
 }

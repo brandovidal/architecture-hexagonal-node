@@ -4,10 +4,10 @@
   "description": "",
   "main": "build/src/start.js",
   "scripts": {
-    "preinstall": "pnpm run db:generate && pnpm run db:push",
+    "postinstall": "pnpm run db:generate && pnpm run db:push",
     "dev": "concurrently \"ts-node-dev --no-notify --respawn --transpile-only src/start.ts\"",
     "prebuild": "concurrently \"pnpm run clean:build\" \"pnpm run db:generate\"",
-    "build": "pnpm run docs && tsc",
+    "build": "tsc",
     "start": "node dist/src/start.js",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",

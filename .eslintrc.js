@@ -15,13 +15,15 @@ module.exports = {
   rules: {
     '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/no-unsafe-argument': 'warn',
-    "@typescript-eslint/explicit-function-return-type": "off",
+    '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
+    '@typescript-eslint/naming-convention': 'off',
+    '@typescript-eslint/member-delimiter-style': 'off',
     '@typescript-eslint/strict-boolean-expressions': 'warn',
-    "@typescript-eslint/promise-function-async": "off",
+    '@typescript-eslint/promise-function-async': 'off',
     '@typescript-eslint/no-misused-promises': [
       'warn',
       { 'checksVoidReturn': false }
     ]
-  },
+  }
 }

@@ -6,20 +6,8 @@ import { Transaction } from '../domain/Transaction'
 export default class TransactionCreator {
   constructor (@inject('SqlLiteTransactionRepository') private readonly repository: SqlLiteTransactionRepository) {}
 
-  async run (
-    id: number,
-    sellerDomain: string,
-    kind: string,
-    invoiceNumber: number,
-    amount: number,
-    total: number,
-    status: string,
-    userCreated: string,
-    userUpdated: string,
-    createdAt: Date,
-    updatedAt: Date
-  ) {
-    const transaction = new Transaction(id, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, createdAt, updatedAt)
+  async run (seller_domain: string, kind: string, invoice_number: number, amount: number, total: number, status: string, user_created: string, user_updated: string) {
+    const transaction = Transaction.create(seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated)
     await this.repository.save(transaction)
   }
 }
