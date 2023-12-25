@@ -1,14 +1,14 @@
 import type { Request, Response } from 'express'
 import type { Controller } from './Controller'
 
-import TransactionReader from '../../Context/transaction/application/TransactionReader'
+import TransactionsFinder from '../../Context/transaction/application/TransactionsFinder'
 
 import httpStatus from 'http-status'
 import { inject, injectable } from 'inversify'
 
 @injectable()
-export default class TransactionGetController implements Controller {
-  constructor (@inject('TransactionReader') private readonly reader: TransactionReader) {}
+export default class TransactionsGetController implements Controller {
+  constructor (@inject('TransactionReader') private readonly reader: TransactionsFinder) {}
 
   async run (_req: Request, res: Response): Promise<void> {
     const data = await this.reader.run()

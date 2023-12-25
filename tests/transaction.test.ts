@@ -2,10 +2,10 @@ import 'reflect-metadata'
 
 import { describe, expect, it, beforeAll } from 'vitest'
 
-import TransactionReader from '../src/Context/transaction/application/TransactionReader'
+import { Transaction } from '../src/Context/transaction/domain/Transaction'
 import type { TransactionRepository } from '../src/Context/transaction/domain/TransactionRepository'
 
-import { Transaction } from '../src/Context/transaction/domain/Transaction'
+import TransactionsFinder from '../src/Context/transaction/application/TransactionsFinder'
 import TransactionCreator from '../src/Context/transaction/application/TransactionCreator'
 
 class MockTransactionRepository implements TransactionRepository {
@@ -20,18 +20,18 @@ class MockTransactionRepository implements TransactionRepository {
 }
 
 describe('Transaction', () => {
-  let transactionReader: TransactionReader
+  let transactionsFinder: TransactionsFinder
   let transactionCreator: TransactionCreator
 
   beforeAll(() => {
     const repository = new MockTransactionRepository()
 
-    transactionReader = new TransactionReader(repository)
+    transactionsFinder = new TransactionsFinder(repository)
     transactionCreator = new TransactionCreator(repository)
   })
 
   it('should get all transactions', async () => {
-    const transactionListExpected = await transactionReader.run()
+    const transactionListExpected = await transactionsFinder.run()
     expect(transactionListExpected.length).toEqual(0)
   })
 
@@ -39,7 +39,7 @@ describe('Transaction', () => {
     const transaction = new Transaction(1, 'example.com', 'WALLET', 1, 100, 100, 'PENDING', 'admin', 'admin', new Date(), new Date())
     void transactionCreator.run(1, 'example.com', 'WALLET', 1, 100, 100, 'PENDING', 'admin', 'admin', new Date(), new Date())
 
-    const transactionListExpected = await transactionReader.run()
+    const transactionListExpected = await transactionsFinder.run()
     expect(transactionListExpected.length).toEqual(1)
 
     const transactionExpected = transactionListExpected[0]

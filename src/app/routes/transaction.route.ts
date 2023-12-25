@@ -1,11 +1,11 @@
 import type { Request, Response, Router } from 'express'
 
 import container from '../dependency-injection'
-import TransactionGetController from '../controllers/TransactionGetController'
+import TransactionsGetController from '../controllers/TransactionsGetController'
 import TransactionPostController from '../controllers/TransactionPostController'
 
 function register (router: Router) {
-  const transactionGetController = container.resolve(TransactionGetController)
+  const transactionGetController = container.resolve(TransactionsGetController)
   router.get('/transaction', (req: Request, res: Response) => transactionGetController.run(req, res))
 
   const transactionPostController = container.resolve(TransactionPostController)
