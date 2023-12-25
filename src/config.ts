@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 const env = from(process.env, {}, logger)
 
 export class Config {
-  port?: number
+  port?: string
   nodeEnv?: string
   databaseUrl?: string
 
@@ -21,8 +21,8 @@ export class Config {
     return this.getEnv('NODE_ENV').default('dev').asString()
   }
 
-  private getPortValue (): number {
-    return this.getEnv('PORT').required().asIntPositive()
+  private getPortValue (): string {
+    return this.getEnv('PORT').required().asString()
   }
 
   private getDatabaseUrlValue (): string {
