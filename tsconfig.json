@@ -43,6 +43,6 @@
     "resolveJsonModule": true,
     "skipLibCheck": true
   },
-  "include": ["src", "test", "seed"],
+  "include": ["src", "tests", "seed"],
   "exclude": ["node_modules/"]
 }
