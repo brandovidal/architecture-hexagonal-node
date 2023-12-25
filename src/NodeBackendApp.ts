@@ -1,5 +1,5 @@
-import { Config } from './config'
 import { Server } from './server'
+import { Config } from './Context/Shared/infraestructure/config'
 
 export class NodeBackendApp {
   server?: Server

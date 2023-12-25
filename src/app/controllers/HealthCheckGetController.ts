@@ -2,16 +2,15 @@ import type { Request, Response } from 'express'
 import type { Controller } from './Controller'
 
 import httpStatus from 'http-status'
-import { inject, injectable } from 'inversify'
-
-import HealthCheckReader from '../../Context/status/application/HealthCheckReader'
+import { injectable } from 'inversify'
 
 @injectable()
 export default class HealthCheckGetController implements Controller {
-  constructor (@inject('HealthCheckReader') private readonly service: HealthCheckReader) {}
-
   async run (_req: Request, res: Response): Promise<void> {
-    const data = await this.service.run()
-    res.status(httpStatus.OK).send(data)
+    res.status(httpStatus.OK).send({
+      success: true,
+      message: 'Health check retrieved successfully',
+      data: []
+    })
   }
 }
