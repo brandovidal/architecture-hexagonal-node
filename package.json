@@ -4,7 +4,7 @@
   "description": "",
   "main": "build/src/server.js",
   "scripts": {
-    "predev": "pnpm run db:generate",
+    "preinstall": "pnpm run db:generate",
     "dev": "concurrently \"ts-node-dev --no-notify --respawn --transpile-only src/server.ts\"",
     "prebuild": "concurrently \"pnpm run clean:build\" \"pnpm run db:generate\"",
     "build": "pnpm run docs && tsc",
