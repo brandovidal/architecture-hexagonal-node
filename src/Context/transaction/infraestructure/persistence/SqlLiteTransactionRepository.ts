@@ -3,7 +3,7 @@ import { injectable } from 'inversify'
 import { Transaction } from '../../domain/Transaction'
 import type { TransactionRepository } from '../../domain/TransactionRepository'
 
-import prisma from '../../../../../prisma'
+import prisma, { type Prisma } from '../../../../../prisma'
 
 @injectable()
 export default class SqlLiteTransactionRepository implements TransactionRepository {
@@ -13,7 +13,8 @@ export default class SqlLiteTransactionRepository implements TransactionReposito
   }
 
   public async save (transaction: Transaction): Promise<void> {
-    const data = transaction.toPrimitives()
+    const data: Prisma.TransactionCreateInput = transaction.toPrimitives()
+
     await prisma.transaction.create({ data })
   }
 }

@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "target": "esnext",
     "module": "commonjs",
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "lib": ["es6", "dom"],
-    "types": ["reflect-metadata"],
+    "lib": ["esnext"],
+    "types": ["reflect-metadata", "node"],
     "sourceMap": false,
     "outDir": "dist",
-    "declaration": true,
+    "declaration": false,
     "strict": true,
     "noEmit": false,
 

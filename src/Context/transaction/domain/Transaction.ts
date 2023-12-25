@@ -1,5 +1,5 @@
 export class Transaction {
-  id?: number
+  id?: number | null
 
   sellerDomain: string
   kind: string
@@ -18,7 +18,7 @@ export class Transaction {
   updatedAt: Date
 
   constructor (
-    id: number,
+    id: number | undefined | null,
     sellerDomain: string,
     kind: string,
     invoiceNumber: number,
@@ -44,7 +44,7 @@ export class Transaction {
   }
 
   static create (sellerDomain: string, kind: string, invoiceNumber: number, amount: number, total: number, status: string, userCreated: string, userUpdated: string) {
-    return new Transaction(0, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, new Date(), new Date())
+    return new Transaction(undefined, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, new Date(), new Date())
   }
 
   static fromPrimitives (plainData: {
@@ -61,7 +61,7 @@ export class Transaction {
     updated_at: Date
   }): Transaction {
     return new Transaction(
-      plainData.id,
+      plainData?.id,
       plainData.seller_domain,
       plainData.kind,
       plainData.invoice_number,
