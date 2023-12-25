@@ -20,6 +20,6 @@ export default class TransactionCreator {
     updatedAt: Date
   ) {
     const transaction = new Transaction(id, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, createdAt, updatedAt)
-    return await this.repository.save(transaction)
+    await this.repository.save(transaction)
   }
 }

@@ -13,7 +13,7 @@ export default class SqlLiteTransactionRepository implements TransactionReposito
   }
 
   public async save (transaction: Transaction): Promise<void> {
-     void await prisma.transaction.create({
+    await prisma.transaction.create({
       data: {
         id: transaction.id,
         sellerDomain: transaction.sellerDomain,

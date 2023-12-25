@@ -22,27 +22,19 @@ interface CreateTransactionRequest {
 
 @injectable()
 export default class TransactionPostController implements Controller {
-  constructor (@inject('TransactionCreator') private readonly service: TransactionCreator) {}
+  constructor (@inject('TransactionCreator') private readonly creator: TransactionCreator) {}
 
   async run (req: Request, res: Response): Promise<void> {
     try {
-      const { id, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, createdAt, updatedAt } =
-        req.body as CreateTransactionRequest
+      const { id, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, createdAt, updatedAt } = req.body as CreateTransactionRequest
 
-      const data = await this.service.run(
-        id,
-        sellerDomain,
-        kind,
-        invoiceNumber,
-        amount,
-        total,
-        status,
-        userCreated,
-        userUpdated,
-        createdAt,
-        updatedAt
-      )
-      res.status(httpStatus.CREATED).send(data)
+      await this.creator.run(id, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, createdAt, updatedAt)
+
+      res.status(httpStatus.CREATED).send({
+        success: true,
+        message: 'Transaction created successfully',
+        data: req.body
+      })
     } catch (error: unknown) {
       console.error('Error trying to create transaction', error)
 

@@ -12,6 +12,10 @@ export default class TransactionGetController implements Controller {
 
   async run (_req: Request, res: Response): Promise<void> {
     const data = await this.service.run()
-    res.status(httpStatus.CREATED).send(data)
+    res.status(httpStatus.OK).send({
+      success: true,
+      message: 'Transactions retrieved successfully',
+      data
+    })
   }
 }
