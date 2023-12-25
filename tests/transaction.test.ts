@@ -2,11 +2,11 @@ import 'reflect-metadata'
 
 import { describe, expect, it, beforeAll } from 'vitest'
 
-import { Transaction } from '../src/Context/transaction/domain/Transaction'
-import type { TransactionRepository } from '../src/Context/transaction/domain/TransactionRepository'
+import { Transaction } from '../src/Context/Transaction/domain/Transaction'
+import type { TransactionRepository } from '../src/Context/Transaction/domain/TransactionRepository'
 
-import TransactionsFinder from '../src/Context/transaction/application/TransactionsFinder'
-import TransactionCreator from '../src/Context/transaction/application/TransactionCreator'
+import TransactionsFinder from '../src/Context/Transaction/application/TransactionsFinder'
+import TransactionCreator from '../src/Context/Transaction/application/TransactionCreator'
 
 class MockTransactionRepository implements TransactionRepository {
   private readonly transactions: Transaction[] = []

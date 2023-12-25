@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express'
 import type { Controller } from './Controller'
 
-import TransactionsFinder from '../../Context/transaction/application/TransactionsFinder'
+import TransactionsFinder from '../../Context/Transaction/application/TransactionsFinder'
 
 import httpStatus from 'http-status'
 import { inject, injectable } from 'inversify'
