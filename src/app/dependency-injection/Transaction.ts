@@ -10,7 +10,7 @@ import TransactionCreator from '../../Context/Transaction/application/Transactio
 
 const container = new Container()
 
-container.bind('SqlLiteTransactionRepository').to(SqlLiteTransactionRepository)
+container.bind('TransactionRepository').to(SqlLiteTransactionRepository)
 
 container.bind('TransactionReader').to(TransactionsFinder)
 container.bind('TransactionGetController').to(TransactionsGetController)

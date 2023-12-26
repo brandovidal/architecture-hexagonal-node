@@ -2,7 +2,9 @@ import express, { Router, json, urlencoded } from 'express'
 
 import helmet from 'helmet'
 import type * as http from 'http'
+
 import cors from 'cors'
+import morgan from 'morgan'
 
 import { registerRoutes } from './app/routes'
 
@@ -15,6 +17,7 @@ export class Server {
     this.port = port
 
     this.express = express()
+
     this.express.use(json())
     this.express.use(urlencoded({ extended: true, limit: '10kb' }))
 
@@ -24,6 +27,7 @@ export class Server {
     this.express.use(helmet.frameguard({ action: 'deny' }))
 
     this.express.use(cors({ origin: '*', optionsSuccessStatus: 200 }))
+    this.express.use(morgan('combined'))
 
     this.express.use(express.static('public'))
 
