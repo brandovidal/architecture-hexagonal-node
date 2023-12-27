@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import type { Request, Response } from 'express'
-import type { Controller } from './Controller'
-
-import TransactionCreator from '../../Context/Transaction/application/TransactionCreator'
 
 import httpStatus from 'http-status'
 import { inject, injectable } from 'inversify'
+
+import type { Controller } from './Controller'
+import TransactionCreator from '../../Context/Transaction/application/TransactionCreator'
 
 interface TransactionPostRequest extends Request {
   body: {

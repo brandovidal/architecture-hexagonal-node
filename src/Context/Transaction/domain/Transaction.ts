@@ -43,8 +43,8 @@ export class Transaction {
     this.updatedAt = updatedAt
   }
 
-  static create (sellerDomain: string, kind: string, invoiceNumber: number, amount: number, total: number, status: string, userCreated: string, userUpdated: string) {
-    return new Transaction(undefined, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, new Date(), new Date())
+  static create (id: string | undefined = undefined, sellerDomain: string, kind: string, invoiceNumber: number, amount: number, total: number, status: string, userCreated: string, userUpdated: string) {
+    return new Transaction(id, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, new Date(), new Date())
   }
 
   static fromPrimitives (plainData: {

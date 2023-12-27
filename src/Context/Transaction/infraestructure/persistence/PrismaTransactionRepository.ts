@@ -17,4 +17,35 @@ export default class PrismaTransactionRepository implements TransactionRepositor
 
     await prisma.transaction.create({ data })
   }
+
+  public async update (transaction: Transaction): Promise<Transaction> {
+    const transactionData = transaction.toPrimitives()
+    delete transactionData.id
+
+    const data: Prisma.TransactionUpdateInput = transactionData
+
+    const transactionUpdated = await prisma.transaction.update({
+      where: { id: transaction.id },
+      data,
+      select: {
+        id: true,
+        seller_domain: true,
+        kind: true,
+        invoice_number: true,
+        amount: true,
+        total: true,
+        status: true,
+        user_created: true,
+        user_updated: true,
+        created_at: true,
+        updated_at: true
+      }
+    })
+
+    return Transaction.fromPrimitives(transactionUpdated)
+  }
+
+  public async delete (id: string): Promise<void> {
+    await prisma.transaction.delete({ where: { id } })
+  }
 }
