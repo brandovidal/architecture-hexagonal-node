@@ -8,7 +8,7 @@ export class MongoClientFactory {
   static async createClient (contextName: string, config: MongoConfig): Promise<MongoClient> {
     let client = MongoClientFactory.getClient(contextName)
 
-    if (!client) {
+    if (client === null) {
       client = await MongoClientFactory.createAndConnectClient(config)
 
       MongoClientFactory.registerClient(client, contextName)
