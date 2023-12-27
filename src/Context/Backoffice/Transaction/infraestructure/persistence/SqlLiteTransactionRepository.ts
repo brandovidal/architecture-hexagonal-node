@@ -3,7 +3,7 @@ import { injectable } from 'inversify'
 import { Transaction } from '../../domain/Transaction'
 import type { TransactionRepository } from '../../domain/TransactionRepository'
 
-import prisma, { type Prisma } from '../../../../../prisma'
+import prisma, { type Prisma } from '../../../../../../prisma'
 
 @injectable()
 export default class SqlLiteTransactionRepository implements TransactionRepository {
