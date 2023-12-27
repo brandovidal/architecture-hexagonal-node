@@ -1,7 +1,7 @@
 import type { Transaction } from '../../domain/Transaction'
 import type { TransactionRepository } from '../../domain/TransactionRepository'
 
-import { MongoRepository } from '../../../../Context/Shared/infraestructure/persistence/mongo/MongoRepository'
+import { MongoRepository } from '../../../../Shared/infraestructure/persistence/mongo/MongoRepository'
 
 import { injectable } from 'inversify'
 

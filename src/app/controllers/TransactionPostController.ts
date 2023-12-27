@@ -5,7 +5,7 @@ import httpStatus from 'http-status'
 import { inject, injectable } from 'inversify'
 
 import type { Controller } from './Controller'
-import TransactionCreator from '../../Context/Transaction/application/TransactionCreator'
+import TransactionCreator from '../../Context/Backoffice/Transaction/application/TransactionCreator'
 
 interface TransactionPostRequest extends Request {
   body: {

@@ -1,11 +1,11 @@
 import { Container } from 'inversify'
 
-import PrismaTransactionRepository from '../../Context/Transaction/infraestructure/persistence/PrismaTransactionRepository'
+import PrismaTransactionRepository from '../../Context/Backoffice/Transaction/infraestructure/persistence/PrismaTransactionRepository'
 
-import TransactionsFinder from '../../Context/Transaction/application/TransactionsFinder'
-import TransactionCreator from '../../Context/Transaction/application/TransactionCreator'
-import TransactionUpdator from '../../Context/Transaction/application/TransactionUpdator'
-import TransactionDeletor from '../../Context/Transaction/application/TransactionDeletor'
+import TransactionsFinder from '../../Context/Backoffice/Transaction/application/TransactionsFinder'
+import TransactionCreator from '../../Context/Backoffice/Transaction/application/TransactionCreator'
+import TransactionUpdator from '../../Context/Backoffice/Transaction/application/TransactionUpdator'
+import TransactionDeletor from '../../Context/Backoffice/Transaction/application/TransactionDeletor'
 
 import TransactionsGetController from '../controllers/TransactionsGetController'
 import TransactionPostController from '../controllers/TransactionPostController'

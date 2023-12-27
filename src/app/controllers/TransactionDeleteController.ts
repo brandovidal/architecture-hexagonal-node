@@ -5,7 +5,7 @@ import httpStatus from 'http-status'
 import { inject, injectable } from 'inversify'
 
 import type { Controller } from './Controller'
-import TransactionDeletor from '../../Context/Transaction/application/TransactionDeletor'
+import TransactionDeletor from '../../Context/Backoffice/Transaction/application/TransactionDeletor'
 
 interface TransactionDeleteRequest extends Request {
   body: {

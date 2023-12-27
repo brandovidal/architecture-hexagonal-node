@@ -4,7 +4,7 @@ import httpStatus from 'http-status'
 import { inject, injectable } from 'inversify'
 
 import type { Controller } from './Controller'
-import TransactionsFinder from '../../Context/Transaction/application/TransactionsFinder'
+import TransactionsFinder from '../../Context/Backoffice/Transaction/application/TransactionsFinder'
 
 @injectable()
 export default class TransactionsGetController implements Controller {
