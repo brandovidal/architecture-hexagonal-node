@@ -4,7 +4,8 @@
   "description": "",
   "main": "build/src/start.js",
   "scripts": {
-    "deps": "pnpm run db:create && pnpm run db:generate && pnpm run db:push && pnpm run db:start",
+    "deps": "pnpm run db:generate && pnpm run db:push",
+    "postinstall": "pnpm run deps",
     "dev": "concurrently --kill-others-on-fail \"ts-node-dev --no-notify --respawn --transpile-only src/start.ts\"",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",

@@ -1,7 +1,9 @@
 import type { Collection, MongoClient, Document } from 'mongodb'
 import { ObjectId } from 'mongodb'
+
+import { injectable } from 'inversify'
+
 import type { AggregateRoot } from '../../../domain/AggregateRoot'
-import { inject, injectable } from 'inversify'
 
 @injectable()
 export abstract class MongoRepository<T extends AggregateRoot> {

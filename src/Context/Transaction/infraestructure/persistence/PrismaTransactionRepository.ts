@@ -6,7 +6,7 @@ import type { TransactionRepository } from '../../domain/TransactionRepository'
 import prisma, { type Prisma } from '../../../../../prisma'
 
 @injectable()
-export default class SqlLiteTransactionRepository implements TransactionRepository {
+export default class PrismaTransactionRepository implements TransactionRepository {
   public async searchAll (): Promise<Transaction[]> {
     const transactions = await prisma.transaction.findMany()
     return transactions.map(transaction => Transaction.fromPrimitives(transaction))
