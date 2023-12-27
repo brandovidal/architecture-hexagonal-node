@@ -3,12 +3,12 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model Transaction {
-  id Int @id @default(autoincrement())
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
   seller_domain String
   kind          String
@@ -20,7 +20,7 @@ model Transaction {
 
   status String @default("PENDING")
 
-  user_created  String @default("")
+  user_created String @default("")
   user_updated String @default("")
 
   created_at DateTime @default(now())
