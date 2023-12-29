@@ -1,7 +1,5 @@
 import { Container } from 'inversify'
 
-import PrismaTransactionRepository from '../../Context/Backoffice/Transaction/infraestructure/persistence/PrismaTransactionRepository'
-
 import TransactionsFinder from '../../Context/Backoffice/Transaction/application/TransactionsFinder'
 import TransactionCreator from '../../Context/Backoffice/Transaction/application/TransactionCreator'
 import TransactionUpdator from '../../Context/Backoffice/Transaction/application/TransactionUpdator'
@@ -12,9 +10,22 @@ import TransactionPostController from '../controllers/TransactionPostController'
 import TransactionPutController from '../controllers/TransactionPutController'
 import TransactionDeleteController from '../controllers/TransactionDeleteController'
 
+import { TypeOrmTransactionRepository } from '../../Context/Backoffice/Transaction/infraestructure/persistence/TypeOrmTransactionRepository'
+import { TypeOrmClientFactory } from '../../Context/Shared/infraestructure/persistence/typeorm/TypeOrmClientFactory'
+
 const container = new Container()
 
-container.bind('TransactionRepository').to(PrismaTransactionRepository)
+container.bind('TypeOrmClientFactory').to(TypeOrmClientFactory)
+
+// container.bind('TypeOrmClient').toProvider(() => {
+//   return () => {
+//     return new Promise(resolve => {
+//       const client = container.get(DataSource)
+//       resolve(client)
+//     })
+//   }
+// })
+container.bind('TransactionRepository').to(TypeOrmTransactionRepository)
 
 container.bind('TransactionReader').to(TransactionsFinder)
 container.bind('TransactionGetController').to(TransactionsGetController)
