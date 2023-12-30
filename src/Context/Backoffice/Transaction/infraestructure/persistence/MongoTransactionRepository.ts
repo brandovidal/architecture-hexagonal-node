@@ -16,6 +16,15 @@ export default class MongoTransactionRepository extends MongoRepository<Transact
     return documents
   }
 
+  public update (transaction: Transaction): Promise<void> {
+    return this.persist(String(transaction.id), transaction)
+  }
+
+  public async delete (id: string): Promise<void> {
+    const repository = await this.collection()
+    await repository.deleteOne({ id })
+  }
+
   protected collectionName (): string {
     return 'transactions'
   }
