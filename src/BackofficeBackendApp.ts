@@ -1,6 +1,6 @@
 import { Server } from './server'
 
-import container from './app/dependency-injection'
+import container from './app/backoffice/dependency-injection'
 
 import { Config } from './Context/Shared/infraestructure/config'
 import { TypeOrmClientFactory } from './Context/Shared/infraestructure/persistence/typeorm/TypeOrmClientFactory'

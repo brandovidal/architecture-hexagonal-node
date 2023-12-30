@@ -1,17 +1,17 @@
 import { Container } from 'inversify'
 
-import TransactionsFinder from '../../Context/Backoffice/Transaction/application/TransactionsFinder'
-import TransactionCreator from '../../Context/Backoffice/Transaction/application/TransactionCreator'
-import TransactionUpdator from '../../Context/Backoffice/Transaction/application/TransactionUpdator'
-import TransactionDeletor from '../../Context/Backoffice/Transaction/application/TransactionDeletor'
+import TransactionsFinder from '../../../Context/Backoffice/Transaction/application/TransactionsFinder'
+import TransactionCreator from '../../../Context/Backoffice/Transaction/application/TransactionCreator'
+import TransactionUpdator from '../../../Context/Backoffice/Transaction/application/TransactionUpdator'
+import TransactionDeletor from '../../../Context/Backoffice/Transaction/application/TransactionDeletor'
 
 import TransactionsGetController from '../controllers/TransactionsGetController'
 import TransactionPostController from '../controllers/TransactionPostController'
 import TransactionPutController from '../controllers/TransactionPutController'
 import TransactionDeleteController from '../controllers/TransactionDeleteController'
 
-import { TypeOrmTransactionRepository } from '../../Context/Backoffice/Transaction/infraestructure/persistence/TypeOrmTransactionRepository'
-import { TypeOrmClientFactory } from '../../Context/Shared/infraestructure/persistence/typeorm/TypeOrmClientFactory'
+import { TypeOrmTransactionRepository } from '../../../Context/Backoffice/Transaction/infraestructure/persistence/TypeOrmTransactionRepository'
+import { TypeOrmClientFactory } from '../../../Context/Shared/infraestructure/persistence/typeorm/TypeOrmClientFactory'
 
 const container = new Container()
 
