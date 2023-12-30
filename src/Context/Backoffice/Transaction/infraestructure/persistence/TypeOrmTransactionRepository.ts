@@ -21,16 +21,22 @@ export class TypeOrmTransactionRepository extends TypeOrmRepository<Transaction>
   }
 
   public async searchAll (): Promise<Transaction[]> {
-    const repository = await this.repository()
-    const documents = await repository.find({ order: { createdAt: 'ASC' }, cache: true })
-    return documents
+    const options = { order: { createdAt: 'ASC' }, cache: true }
+    return await this.searchByFilters(options)
   }
 
-  public async update (transaction: Transaction): Promise<Transaction> {
+  public async update (transaction: Transaction): Promise<void> {
     const repository = await this.repository()
-    await repository.save(transaction)
 
-    return transaction
+    const transactionFormatted = transaction.toPrimitives()
+    const transactionData = {
+      invoice_number: transactionFormatted.invoice_number,
+      amount: transactionFormatted.amount,
+      status: transactionFormatted.status,
+      user_updated: transactionFormatted.user_updated
+    }
+
+    await repository.findOneAndUpdate({ id: transaction.id }, { $set: transactionData })
   }
 
   public async delete (id: string): Promise<void> {

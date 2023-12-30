@@ -18,13 +18,12 @@ export default class PrismaTransactionRepository implements TransactionRepositor
     await prisma.transaction.create({ data })
   }
 
-  public async update (transaction: Transaction): Promise<Transaction> {
+  public async update (transaction: Transaction): Promise<void> {
     const transactionData = transaction.toPrimitives()
-    delete transactionData.id
 
     const data: Prisma.TransactionUpdateInput = transactionData
 
-    const transactionUpdated = await prisma.transaction.update({
+    await prisma.transaction.update({
       where: { id: transaction.id },
       data,
       select: {
@@ -41,8 +40,6 @@ export default class PrismaTransactionRepository implements TransactionRepositor
         updated_at: true
       }
     })
-
-    return Transaction.fromPrimitives(transactionUpdated)
   }
 
   public async delete (id: string): Promise<void> {

@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/space-before-function-paren */
-import type { EntitySchema, Repository } from 'typeorm'
+import type { EntitySchema, FindManyOptions, MongoRepository } from 'typeorm'
 import { injectable, unmanaged } from 'inversify'
-
-import { AppContextEnum } from '../../../../../AppContext'
 
 import type { AggregateRoot } from '../../../domain/AggregateRoot'
 import { TypeOrmClientFactory } from './TypeOrmClientFactory'
@@ -21,7 +19,7 @@ export abstract class TypeOrmRepository<T extends AggregateRoot> {
     return TypeOrmClientFactory.getClientOrFail(this.context)
   }
 
-  protected async repository (): Promise<Repository<T>> {
+  protected async repository (): Promise<MongoRepository<T>> {
     const schema = this.entitySchema()
     return this.client.getMongoRepository(schema)
   }
@@ -30,6 +28,12 @@ export abstract class TypeOrmRepository<T extends AggregateRoot> {
     const repository = await this.repository()
     const document = aggregateRoot.toPrimitives()
 
-    await repository.insert(document)
+    await repository.save(document)
+  }
+
+  protected async searchByFilters (options: FindManyOptions): Promise<T[]> {
+    const repository = await this.repository()
+    const documents = await repository.find(options)
+    return documents
   }
 }
