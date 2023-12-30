@@ -4,7 +4,7 @@ import container from './app/dependency-injection'
 
 import { Config } from './Context/Shared/infraestructure/config'
 import { TypeOrmClientFactory } from './Context/Shared/infraestructure/persistence/typeorm/TypeOrmClientFactory'
-import { AppContextEnum } from './AppContex'
+import { AppContextEnum } from './AppContext'
 
 const config = new Config()
 
@@ -31,7 +31,7 @@ export class NodeBackendApp {
   private async startDatabaseConnection () {
     const app = container.resolve(TypeOrmClientFactory)
 
-    await app.createClient(AppContextEnum.APP_CONTEXT, {
+    await app.createClient(AppContextEnum.BACKOFFICE_TRANSACTION_CONTEXT, {
       url: config.databaseUrl
     })
   }

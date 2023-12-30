@@ -1,4 +1,5 @@
 import type { EntitySchema } from 'typeorm'
+import { injectable } from 'inversify'
 
 import { TransactionEntity } from './typeorm/TransactionEntity'
 
@@ -7,10 +8,14 @@ import type { TransactionRepository } from '../../domain/TransactionRepository'
 
 import { TypeOrmRepository } from '../../../../Shared/infraestructure/persistence/typeorm/TypeOrmRepository'
 
-import { injectable } from 'inversify'
+import { AppContextEnum } from '../../../../../AppContext'
 
 @injectable()
 export class TypeOrmTransactionRepository extends TypeOrmRepository<Transaction> implements TransactionRepository {
+  constructor () {
+    super(AppContextEnum.BACKOFFICE_TRANSACTION_CONTEXT)
+  }
+
   public save (transaction: Transaction): Promise<void> {
     return this.persist(transaction)
   }

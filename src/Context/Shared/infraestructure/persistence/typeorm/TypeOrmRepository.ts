@@ -1,38 +1,35 @@
+/* eslint-disable @typescript-eslint/space-before-function-paren */
 import type { EntitySchema, Repository } from 'typeorm'
-import { injectable } from 'inversify'
+import { injectable, unmanaged } from 'inversify'
 
-import { AppContextEnum } from '../../../../../AppContex'
+import { AppContextEnum } from '../../../../../AppContext'
 
 import type { AggregateRoot } from '../../../domain/AggregateRoot'
 import { TypeOrmClientFactory } from './TypeOrmClientFactory'
 
 @injectable()
 export abstract class TypeOrmRepository<T extends AggregateRoot> {
-  // private readonly _client: DataSource
+  context: string
 
-  // constructor () {
-  // constructor (@unmanaged() private _client: Promise<DataSource>) {
-  // this._client = TypeOrmClientFactory.getClientOrFail(AppContextEnum.APP_CONTEXT)
-  // }
+  constructor (@unmanaged() readonly _context: string) {
+    this.context = _context
+  }
 
-  // eslint-disable-next-line @typescript-eslint/space-before-function-paren
   protected abstract entitySchema(): EntitySchema<T>
 
-  // protected get client () {
-  //   return this._client
-  // }
+  protected get client () {
+    return TypeOrmClientFactory.getClientOrFail(this.context)
+  }
 
   protected async repository (): Promise<Repository<T>> {
     const schema = this.entitySchema()
-
-    const _client = TypeOrmClientFactory.getClientOrFail(AppContextEnum.APP_CONTEXT)
-    return _client.getMongoRepository(schema)
+    return this.client.getMongoRepository(schema)
   }
 
   protected async persist (aggregateRoot: T): Promise<void> {
     const repository = await this.repository()
-    const docuemnt = aggregateRoot.toPrimitives()
+    const document = aggregateRoot.toPrimitives()
 
-    await repository.insert(docuemnt)
+    await repository.insert(document)
   }
 }

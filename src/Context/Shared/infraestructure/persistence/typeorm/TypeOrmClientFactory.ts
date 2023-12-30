@@ -5,7 +5,6 @@ import { injectable } from 'inversify'
 
 import type { Nullable } from '../../../../../Context/Shared/domain/Nullable'
 import { TransactionEntity } from '../../../../../Context/Backoffice/Transaction/infraestructure/persistence/typeorm/TransactionEntity'
-import path from 'path'
 
 @injectable()
 export class TypeOrmClientFactory {
@@ -29,7 +28,6 @@ export class TypeOrmClientFactory {
         appname: contextName,
         type: 'mongodb',
         url: config.url,
-        // entities: [path.resolve(__dirname) + '/../../../../**/**/infrastructure/persistence/typeorm/*{.js,.ts}'],
         entities: [TransactionEntity],
         synchronize: true,
         logging: true
