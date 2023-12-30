@@ -30,10 +30,12 @@ export class TypeOrmTransactionRepository extends TypeOrmRepository<Transaction>
 
     const transactionFormatted = transaction.toPrimitives()
     const transactionData = {
+      kind: transactionFormatted.kind,
       invoice_number: transactionFormatted.invoice_number,
       amount: transactionFormatted.amount,
       status: transactionFormatted.status,
-      user_updated: transactionFormatted.user_updated
+      user_updated: transactionFormatted.user_updated,
+      updated_at: transactionFormatted.updated_at
     }
 
     await repository.findOneAndUpdate({ id: transaction.id }, { $set: transactionData })

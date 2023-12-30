@@ -21,7 +21,9 @@ export const TransactionEntity = new EntitySchema<Transaction>({
       type: String
     },
     kind: {
-      type: String
+      type: String,
+      nullable: false,
+      enum: ['sale', 'refund']
     },
     invoiceNumber: {
       name: 'invoice_number',
