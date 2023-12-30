@@ -1,8 +1,11 @@
-export class Transaction {
-  id?: string
+import type { ObjectId } from '../../../../Context/Shared/domain/ObjectId'
 
-  sellerDomain: string
-  kind: string
+export class Transaction {
+  _id!: ObjectId
+  id!: string
+
+  sellerDomain!: string
+  kind!: string
 
   invoiceNumber: number
 
@@ -18,7 +21,7 @@ export class Transaction {
   updatedAt: Date
 
   constructor (
-    id: string | undefined,
+    id: string,
     sellerDomain: string,
     kind: string,
     invoiceNumber: number,
@@ -43,7 +46,17 @@ export class Transaction {
     this.updatedAt = updatedAt
   }
 
-  static create (id: string | undefined = undefined, sellerDomain: string, kind: string, invoiceNumber: number, amount: number, total: number, status: string, userCreated: string, userUpdated: string) {
+  static create (
+    id: string,
+    sellerDomain: string,
+    kind: string,
+    invoiceNumber: number,
+    amount: number,
+    total: number,
+    status: string,
+    userCreated: string,
+    userUpdated: string
+  ) {
     return new Transaction(id, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, new Date(), new Date())
   }
 

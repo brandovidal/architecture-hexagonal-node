@@ -1,4 +1,4 @@
-import { EntitySchema, ObjectId } from 'typeorm'
+import { EntitySchema } from 'typeorm'
 
 import { Transaction } from '../../../domain/Transaction'
 
@@ -7,10 +7,14 @@ export const TransactionEntity = new EntitySchema<Transaction>({
   tableName: 'transactions',
   target: Transaction,
   columns: {
+    _id: {
+      type: String,
+      objectId: true,
+      generated: true
+    },
     id: {
       type: String,
-      primary: true,
-      default: () => new ObjectId().toHexString()
+      primary: true
     },
     sellerDomain: {
       name: 'seller_domain',
@@ -56,5 +60,12 @@ export const TransactionEntity = new EntitySchema<Transaction>({
       type: Date,
       nullable: true
     }
-  }
+  },
+  indices: [
+    {
+      name: 'IDX_TRANSACTION_UNIQUE',
+      unique: false,
+      columns: ['sellerDomain', 'kind']
+    }
+  ]
 })

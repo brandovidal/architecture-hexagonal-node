@@ -13,7 +13,7 @@ export class ObjectId {
   }
 
   private ensureIsValidObjectId (id: string): void {
-    if (Oid.isValid(id) === false) {
+    if (Oid.isValid(id) === undefined) {
       throw new Error(`<${this.constructor.name}> does not allow the value <${id}>`)
     }
   }

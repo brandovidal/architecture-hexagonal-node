@@ -16,15 +16,6 @@ import { TypeOrmClientFactory } from '../../Context/Shared/infraestructure/persi
 const container = new Container()
 
 container.bind('TypeOrmClientFactory').to(TypeOrmClientFactory)
-
-// container.bind('TypeOrmClient').toProvider(() => {
-//   return () => {
-//     return new Promise(resolve => {
-//       const client = container.get(DataSource)
-//       resolve(client)
-//     })
-//   }
-// })
 container.bind('TransactionRepository').to(TypeOrmTransactionRepository)
 
 container.bind('TransactionReader').to(TransactionsFinder)

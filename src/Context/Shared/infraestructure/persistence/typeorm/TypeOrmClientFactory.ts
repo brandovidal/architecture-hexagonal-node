@@ -5,6 +5,7 @@ import { injectable } from 'inversify'
 
 import type { Nullable } from '../../../../../Context/Shared/domain/Nullable'
 import { TransactionEntity } from '../../../../../Context/Backoffice/Transaction/infraestructure/persistence/typeorm/TransactionEntity'
+import path from 'path'
 
 @injectable()
 export class TypeOrmClientFactory {
@@ -15,10 +16,8 @@ export class TypeOrmClientFactory {
 
     if (client !== undefined || client !== null) {
       client = await TypeOrmClientFactory.createAndConnectClient(contextName, config)
-
       TypeOrmClientFactory.registerClient(client, contextName)
     }
-
     console.log(`MongoDB client registered in context "${contextName}".`)
 
     return client
@@ -30,7 +29,7 @@ export class TypeOrmClientFactory {
         appname: contextName,
         type: 'mongodb',
         url: config.url,
-        // entities: [__dirname + '/../../../**/**/infrastructure/persistence/typeorm/*{.js,.ts}'],
+        // entities: [path.resolve(__dirname) + '/../../../../**/**/infrastructure/persistence/typeorm/*{.js,.ts}'],
         entities: [TransactionEntity],
         synchronize: true,
         logging: true
