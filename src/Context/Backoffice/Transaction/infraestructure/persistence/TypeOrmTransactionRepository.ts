@@ -30,7 +30,6 @@ export class TypeOrmTransactionRepository extends TypeOrmRepository<Transaction>
 
     const transactionFormatted = transaction.toPrimitives()
     const transactionData = {
-      kind: transactionFormatted.kind,
       invoice_number: transactionFormatted.invoice_number,
       amount: transactionFormatted.amount,
       status: transactionFormatted.status,
