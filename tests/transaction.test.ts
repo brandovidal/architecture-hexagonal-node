@@ -17,6 +17,16 @@ class MockTransactionRepository implements TransactionRepository {
   public async save (data: Transaction) {
     this.transactions.push(data)
   }
+
+  public async update (data: Transaction) {
+    const index = this.transactions.findIndex((transaction) => transaction.id === data.id)
+    this.transactions[index] = data
+  }
+
+  public async delete (id: string) {
+    const index = this.transactions.findIndex((transaction) => transaction.id === id)
+    this.transactions.splice(index, 1)
+  }
 }
 
 describe('Transaction', () => {
@@ -36,7 +46,7 @@ describe('Transaction', () => {
   })
 
   it('should save an transaction', async () => {
-    const transaction = new Transaction(1, 'example.com', 'WALLET', 1, 100, 100, 'PENDING', 'admin', 'admin', new Date(), new Date())
+    const transaction = new Transaction('1', 'example.com', 'WALLET', 1, 100, 100, 'PENDING', 'admin', 'admin', new Date(), new Date())
     void transactionCreator.run('example.com', 'WALLET', 1, 100, 100, 'PENDING', 'admin', 'admin')
 
     const transactionListExpected = await transactionsFinder.run()
