@@ -8,7 +8,7 @@ import type { TransactionRepository } from '../../domain/TransactionRepository'
 
 import { TypeOrmRepository } from '../../../../Shared/infraestructure/persistence/typeorm/TypeOrmRepository'
 
-import { AppContextEnum } from '../../../../../AppContext'
+import { AppContextEnum } from '../../../../../apps/backoffice/AppContext'
 
 @injectable()
 export class TypeOrmTransactionRepository extends TypeOrmRepository<Transaction> implements TransactionRepository {

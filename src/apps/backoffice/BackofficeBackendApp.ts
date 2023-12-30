@@ -1,10 +1,10 @@
 import { Server } from './server'
 
-import container from './apps/backoffice/dependency-injection'
+import container from './dependency-injection'
 
-import { Config } from './Context/Shared/infraestructure/config'
-import { TypeOrmClientFactory } from './Context/Shared/infraestructure/persistence/typeorm/TypeOrmClientFactory'
-import { AppContextEnum } from './apps/backoffice/AppContext'
+import { Config } from '../../Context/Shared/infraestructure/config'
+import { TypeOrmClientFactory } from '../../Context/Shared/infraestructure/persistence/typeorm/TypeOrmClientFactory'
+import { AppContextEnum } from './AppContext'
 
 const config = new Config()
 
