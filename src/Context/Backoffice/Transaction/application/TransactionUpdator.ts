@@ -1,15 +1,12 @@
 import { inject, injectable } from 'inversify'
-
 import { Transaction } from '../domain/Transaction'
 import { TransactionRepository } from '../domain/TransactionRepository'
-import { ObjectId } from '../../../../Context/Shared/domain/ObjectId'
 
 @injectable()
-export default class TransactionCreator {
+export default class TransactionUpdator {
   constructor (@inject('TransactionRepository') private readonly repository: TransactionRepository) {}
 
-  async run (seller_domain: string, kind: string, invoice_number: number, amount: number, total: number, status: string, user_created: string, user_updated: string) {
-    const id = ObjectId.random()
+  async run (id: string, seller_domain: string, kind: string, invoice_number: number, amount: number, total: number, status: string, user_created: string, user_updated: string) {
     const transaction = Transaction.fromPrimitives({
       id,
       seller_domain,
@@ -20,9 +17,9 @@ export default class TransactionCreator {
       status,
       user_created,
       user_updated,
-      created_at: new Date(),
+      created_at: undefined,
       updated_at: new Date()
     })
-    await this.repository.save(transaction)
+    await this.repository.update(transaction)
   }
 }

@@ -1,8 +1,11 @@
-export class Transaction {
-  id?: number | null
+import type { ObjectId } from '../../../../Context/Shared/domain/ObjectId'
 
-  sellerDomain: string
-  kind: string
+export class Transaction {
+  _id!: ObjectId
+  id!: string
+
+  sellerDomain!: string
+  kind!: string
 
   invoiceNumber: number
 
@@ -11,24 +14,24 @@ export class Transaction {
 
   status: string
 
-  userCreated: string
-  userUpdated: string
+  userCreated?: string
+  userUpdated?: string
 
-  createdAt: Date
-  updatedAt: Date
+  createdAt?: Date
+  updatedAt?: Date
 
   constructor (
-    id: number | undefined | null,
+    id: string,
     sellerDomain: string,
     kind: string,
     invoiceNumber: number,
     amount: number,
     total: number,
     status: string,
-    userCreated: string,
-    userUpdated: string,
-    createdAt: Date,
-    updatedAt: Date
+    userCreated?: string,
+    userUpdated?: string,
+    createdAt?: Date,
+    updatedAt?: Date
   ) {
     this.id = id
     this.sellerDomain = sellerDomain
@@ -43,22 +46,18 @@ export class Transaction {
     this.updatedAt = updatedAt
   }
 
-  static create (sellerDomain: string, kind: string, invoiceNumber: number, amount: number, total: number, status: string, userCreated: string, userUpdated: string) {
-    return new Transaction(undefined, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, new Date(), new Date())
-  }
-
   static fromPrimitives (plainData: {
-    id: number
+    id: string
     seller_domain: string
     kind: string
     invoice_number: number
     amount: number
     total: number
     status: string
-    user_created: string
-    user_updated: string
-    created_at: Date
-    updated_at: Date
+    user_created?: string
+    user_updated?: string
+    created_at?: Date
+    updated_at?: Date
   }): Transaction {
     return new Transaction(
       plainData?.id,
