@@ -1,6 +1,6 @@
 import 'reflect-metadata'
 
-import { NodeBackendApp } from './NodeBackendApp'
+import { NodeBackendApp } from './BackofficeBackendApp'
 
 try {
   void new NodeBackendApp().start()
