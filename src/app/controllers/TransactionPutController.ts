@@ -31,7 +31,7 @@ export default class TransactionPutController implements Controller {
 
       await this.updator.run(id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated)
 
-      res.status(httpStatus.CREATED).send({
+      res.status(httpStatus.OK).send({
         success: true,
         message: 'Transaction updated successfully',
         data: req.body

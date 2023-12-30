@@ -15,15 +15,15 @@ interface TransactionDeleteRequest extends Request {
 
 @injectable()
 export default class TransactionDeleteController implements Controller {
-  constructor (@inject('TransactionDeletor') private readonly updator: TransactionDeletor) {}
+  constructor (@inject('TransactionDeletor') private readonly deletor: TransactionDeletor) {}
 
   async run (req: TransactionDeleteRequest, res: Response): Promise<void> {
     try {
       const { id } = req.body
 
-      await this.updator.run(id)
+      await this.deletor.run(id)
 
-      res.status(httpStatus.CREATED).send({
+      res.status(httpStatus.OK).send({
         success: true,
         message: 'Transaction deleted successfully',
         data: req.body

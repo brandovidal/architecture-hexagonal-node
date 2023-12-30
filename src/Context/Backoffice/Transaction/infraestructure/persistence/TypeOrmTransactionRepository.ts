@@ -41,7 +41,7 @@ export class TypeOrmTransactionRepository extends TypeOrmRepository<Transaction>
 
   public async delete (id: string): Promise<void> {
     const repository = await this.repository()
-    await repository.delete(id)
+    await repository.deleteOne({ id })
   }
 
   protected entitySchema (): EntitySchema<Transaction> {
