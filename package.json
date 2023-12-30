@@ -13,7 +13,7 @@
     "test:ci": "vitest run",
     "test:ui": "vitest --ui",
     "build": "pnpm run clean:build && tsc",
-    "start": "node dist/src/start.js",
+    "start": "node ./dist/src/apps/backoffice/start.js",
     "docs": "tsoa spec",
     "clean:build": "rimraf dist public",
     "clean:install": "rimraf node_modules package-lock.json yarn.lock pnpm-lock.yaml bun.lockb",
