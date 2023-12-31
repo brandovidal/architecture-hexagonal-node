@@ -1,9 +1,9 @@
 import 'reflect-metadata'
 
-import { NodeBackendApp } from './BackofficeBackendApp'
+import { BackofficeBackendApp } from './BackofficeBackendApp'
 
 try {
-  void new NodeBackendApp().start()
+  void new BackofficeBackendApp().start()
 } catch (e) {
   console.log(e)
   process.exit(1)

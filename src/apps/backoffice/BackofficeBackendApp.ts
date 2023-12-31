@@ -8,7 +8,7 @@ import { AppContextEnum } from './AppContext'
 
 const config = new Config()
 
-export class NodeBackendApp {
+export class BackofficeBackendApp {
   server?: Server
 
   async start () {
