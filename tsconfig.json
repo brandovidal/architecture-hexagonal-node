@@ -5,7 +5,7 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "lib": ["esnext", "dom"],	
-    "types": ["reflect-metadata", "node", "vitest"],
+    "types": ["reflect-metadata", "node"],
     "sourceMap": false,
     "outDir": "dist",
     "declaration": false,

@@ -5,7 +5,6 @@
   "main": "build/src/start.js",
   "scripts": {
     "deps": "pnpm run db:init && pnpm run db:generate",
-    "postinstall": "pnpm run deps",
     "dev": "concurrently --kill-others-on-fail \"dotenv -e .env.dev -- ts-node-dev --no-notify --respawn --transpile-only src/apps/backoffice/start.ts\"",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
