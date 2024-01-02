@@ -6,7 +6,7 @@ import type * as http from 'http'
 import cors from 'cors'
 import morgan from 'morgan'
 
-import { registerRoutes } from './app/routes'
+import { registerRoutes } from './routes'
 
 export class Server {
   private readonly express: express.Express

@@ -1,14 +1,14 @@
 import { Server } from './server'
 
-import container from './app/dependency-injection'
+import container from './dependency-injection'
 
-import { Config } from './Context/Shared/infraestructure/config'
-import { TypeOrmClientFactory } from './Context/Shared/infraestructure/persistence/typeorm/TypeOrmClientFactory'
+import { Config } from '../../Context/Shared/infraestructure/config'
+import { TypeOrmClientFactory } from '../../Context/Shared/infraestructure/persistence/typeorm/TypeOrmClientFactory'
 import { AppContextEnum } from './AppContext'
 
 const config = new Config()
 
-export class NodeBackendApp {
+export class BackofficeBackendApp {
   server?: Server
 
   async start () {
