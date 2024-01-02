@@ -63,11 +63,5 @@ export const TransactionEntity = new EntitySchema<Transaction>({
       nullable: true
     }
   },
-  indices: [
-    {
-      name: 'IDX_TRANSACTION_UNIQUE',
-      unique: false,
-      columns: ['sellerDomain', 'kind']
-    }
-  ]
+  indices: []
 })
