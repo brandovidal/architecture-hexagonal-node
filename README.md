@@ -25,6 +25,12 @@ pnpm install
 pnpm dev
 ```
 
+- 🚀 Build App
+
+```bash
+pnpm build
+```
+
 - 🚀 Start App
 
 ```bash
