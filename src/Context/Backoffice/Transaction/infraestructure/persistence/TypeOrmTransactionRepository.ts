@@ -9,6 +9,7 @@ import type { TransactionRepository } from '../../domain/TransactionRepository'
 import { TypeOrmRepository } from '../../../../Shared/infraestructure/persistence/typeorm/TypeOrmRepository'
 
 import { AppContextEnum } from '../../../../../apps/backoffice/AppContext'
+import { MongoFindManyOptions } from 'typeorm/find-options/mongodb/MongoFindManyOptions'
 
 @injectable()
 export class TypeOrmTransactionRepository extends TypeOrmRepository<Transaction> implements TransactionRepository {
@@ -21,7 +22,7 @@ export class TypeOrmTransactionRepository extends TypeOrmRepository<Transaction>
   }
 
   public async searchAll (): Promise<Transaction[]> {
-    const options = { order: { createdAt: 'ASC' }, cache: true }
+    const options: MongoFindManyOptions = { order: { createdAt: 'ASC' }, cache: true }
     return await this.searchByFilters(options)
   }
 
