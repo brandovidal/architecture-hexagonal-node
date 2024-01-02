@@ -19,20 +19,16 @@ Copy the `.env.example` file to `.env` and fill in the required environment vari
 pnpm install
 ```
 
-- 📂 Run prisma
-
-```bash
-pnpm db:generate
-```
-
-```bash
-pnpm db:push
-```
-
 - ⚒️ Run development App
 
 ```bash
 pnpm dev
+```
+
+- 🚀 Build App
+
+```bash
+pnpm build
 ```
 
 - 🚀 Start App

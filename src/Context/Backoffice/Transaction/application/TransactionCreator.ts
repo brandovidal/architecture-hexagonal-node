@@ -10,19 +10,7 @@ export default class TransactionCreator {
 
   async run (seller_domain: string, kind: string, invoice_number: number, amount: number, total: number, status: string, user_created: string, user_updated: string) {
     const id = ObjectId.random()
-    const transaction = Transaction.fromPrimitives({
-      id,
-      seller_domain,
-      kind,
-      invoice_number,
-      amount,
-      total,
-      status,
-      user_created,
-      user_updated,
-      created_at: new Date(),
-      updated_at: new Date()
-    })
+    const transaction = new Transaction(id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated, new Date(), new Date())
     await this.repository.save(transaction)
   }
 }
