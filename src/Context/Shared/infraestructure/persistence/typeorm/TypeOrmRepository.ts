@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/space-before-function-paren */
 import type { EntitySchema, MongoRepository } from 'typeorm'
-import { MongoFindManyOptions } from 'typeorm/find-options/mongodb/MongoFindManyOptions'
+import { type MongoFindManyOptions } from 'typeorm/find-options/mongodb/MongoFindManyOptions'
 import { injectable, unmanaged } from 'inversify'
 
 import type { AggregateRoot } from '../../../domain/AggregateRoot'
