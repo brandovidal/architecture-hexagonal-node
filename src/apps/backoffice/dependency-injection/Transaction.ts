@@ -1,6 +1,6 @@
 import { Container } from 'inversify'
 
-import TransactionsFinder from '../../../Context/Backoffice/Transaction/application/TransactionsFinder'
+import TransactionReader from '../../../Context/Backoffice/Transaction/application/TransactionReader'
 import TransactionCreator from '../../../Context/Backoffice/Transaction/application/TransactionCreator'
 import TransactionUpdator from '../../../Context/Backoffice/Transaction/application/TransactionUpdator'
 import TransactionDeletor from '../../../Context/Backoffice/Transaction/application/TransactionDeletor'
@@ -18,8 +18,8 @@ const container = new Container()
 container.bind('TypeOrmClientFactory').to(TypeOrmClientFactory)
 container.bind('TransactionRepository').to(TypeOrmTransactionRepository)
 
-container.bind('TransactionReader').to(TransactionsFinder)
-container.bind('TransactionGetController').to(TransactionsGetController)
+container.bind('TransactionReader').to(TransactionReader)
+container.bind('Apps.backoffice.controllers.TransactionsGetController').to(TransactionsGetController)
 
 container.bind('TransactionCreator').to(TransactionCreator)
 container.bind('TransactionPostController').to(TransactionPostController)

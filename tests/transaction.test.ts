@@ -5,7 +5,7 @@ import { describe, expect, it, beforeAll } from 'vitest'
 import { Transaction } from '../src/Context/Backoffice/Transaction/domain/Transaction'
 import type { TransactionRepository } from '../src/Context/Backoffice/Transaction/domain/TransactionRepository'
 
-import TransactionsFinder from 'src/Context/Backoffice/Transaction/application/TransactionsFinder'
+import TransactionReader from 'src/Context/Backoffice/Transaction/application/TransactionReader'
 import TransactionCreator from 'src/Context/Backoffice/Transaction/application/TransactionCreator'
 import TransactionUpdator from 'src/Context/Backoffice/Transaction/application/TransactionUpdator'
 import TransactionDeletor from 'src/Context/Backoffice/Transaction/application/TransactionDeletor'
@@ -32,7 +32,7 @@ class MockTransactionRepository implements TransactionRepository {
 }
 
 describe('Transaction', () => {
-  let transactionsFinder: TransactionsFinder
+  let transactionsFinder: TransactionReader
   let transactionCreator: TransactionCreator
   let transactionUpdator: TransactionUpdator
   let transactionDeletor: TransactionDeletor
@@ -40,7 +40,7 @@ describe('Transaction', () => {
   beforeAll(() => {
     const repository = new MockTransactionRepository()
 
-    transactionsFinder = new TransactionsFinder(repository)
+    transactionsFinder = new TransactionReader(repository)
     transactionCreator = new TransactionCreator(repository)
     transactionUpdator = new TransactionUpdator(repository)
     transactionDeletor = new TransactionDeletor(repository)

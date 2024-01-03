@@ -2,7 +2,7 @@ import { inject, injectable } from 'inversify'
 import { TransactionRepository } from '../domain/TransactionRepository'
 
 @injectable()
-export default class TransactionsFinder {
+export default class TransactionReader {
   constructor (@inject('TransactionRepository') private readonly repository: TransactionRepository) {}
 
   async run () {
