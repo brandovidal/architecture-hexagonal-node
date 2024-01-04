@@ -2,6 +2,7 @@ import type { EntitySchema } from 'typeorm'
 import { injectable } from 'inversify'
 
 import { TransactionEntity } from './typeorm/TransactionEntity'
+import { type MongoFindManyOptions } from 'typeorm/find-options/mongodb/MongoFindManyOptions'
 
 import type { Transaction } from '../../domain/Transaction'
 import type { TransactionRepository } from '../../domain/TransactionRepository'
@@ -9,7 +10,8 @@ import type { TransactionRepository } from '../../domain/TransactionRepository'
 import { TypeOrmRepository } from '../../../../Shared/infraestructure/persistence/typeorm/TypeOrmRepository'
 
 import { AppContextEnum } from '../../../../../apps/backoffice/AppContext'
-import { type MongoFindManyOptions } from 'typeorm/find-options/mongodb/MongoFindManyOptions'
+
+import type { Nullable } from '../../../../../Context/Shared/domain/Nullable'
 
 @injectable()
 export class TypeOrmTransactionRepository extends TypeOrmRepository<Transaction> implements TransactionRepository {
@@ -19,6 +21,12 @@ export class TypeOrmTransactionRepository extends TypeOrmRepository<Transaction>
 
   public save (transaction: Transaction): Promise<void> {
     return this.persist(transaction)
+  }
+
+  public async searchById (id: string): Promise<Nullable<Transaction>> {
+    const repository = await this.repository()
+    const document = await repository.findOneBy({ id })
+    return document
   }
 
   public async searchAll (): Promise<Transaction[]> {
@@ -43,7 +51,8 @@ export class TypeOrmTransactionRepository extends TypeOrmRepository<Transaction>
 
   public async delete (id: string): Promise<void> {
     const repository = await this.repository()
-    await repository.deleteOne({ id })
+    const res = await repository.deleteOne({ id })
+    console.log('🚀 ~ file: TypeOrmTransactionRepository.ts:47 ~ TypeOrmTransactionRepository ~ delete ~ res:', res)
   }
 
   protected entitySchema (): EntitySchema<Transaction> {

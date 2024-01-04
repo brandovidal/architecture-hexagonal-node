@@ -1,6 +1,6 @@
 import { Container } from 'inversify'
 
-import TransactionsFinder from '../../../Context/Backoffice/Transaction/application/TransactionsFinder'
+import TransactionReader from '../../../Context/Backoffice/Transaction/application/TransactionReader'
 import TransactionCreator from '../../../Context/Backoffice/Transaction/application/TransactionCreator'
 import TransactionUpdator from '../../../Context/Backoffice/Transaction/application/TransactionUpdator'
 import TransactionDeletor from '../../../Context/Backoffice/Transaction/application/TransactionDeletor'
@@ -15,19 +15,19 @@ import { TypeOrmClientFactory } from '../../../Context/Shared/infraestructure/pe
 
 const container = new Container()
 
-container.bind('TypeOrmClientFactory').to(TypeOrmClientFactory)
-container.bind('TransactionRepository').to(TypeOrmTransactionRepository)
+container.bind(TypeOrmClientFactory).toSelf()
+container.bind('Backoffice.Transaction.domain.TransactionRepository').to(TypeOrmTransactionRepository)
 
-container.bind('TransactionReader').to(TransactionsFinder)
-container.bind('TransactionGetController').to(TransactionsGetController)
+container.bind('Backoffice.Transaction.application.TransactionReader').to(TransactionReader)
+container.bind(TransactionsGetController).toSelf()
 
-container.bind('TransactionCreator').to(TransactionCreator)
-container.bind('TransactionPostController').to(TransactionPostController)
+container.bind('Backoffice.Transaction.application.TransactionCreator').to(TransactionCreator)
+container.bind(TransactionPostController).toSelf()
 
-container.bind('TransactionUpdator').to(TransactionUpdator)
-container.bind('TransactionPutController').to(TransactionPutController)
+container.bind('Backoffice.Transaction.application.TransactionUpdator').to(TransactionUpdator)
+container.bind(TransactionPutController).toSelf()
 
-container.bind('TransactionDeletor').to(TransactionDeletor)
-container.bind('TransactionDeleteController').to(TransactionDeleteController)
+container.bind('Backoffice.Transaction.application.TransactionDeletor').to(TransactionDeletor)
+container.bind(TransactionDeleteController).toSelf()
 
 export default container
