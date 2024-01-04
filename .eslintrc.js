@@ -22,6 +22,7 @@ module.exports = {
     '@typescript-eslint/strict-boolean-expressions': 'warn',
     '@typescript-eslint/promise-function-async': 'off',
     "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/triple-slash-reference": "off",
     '@typescript-eslint/no-misused-promises': [
       'warn',
       { 'checksVoidReturn': false }
