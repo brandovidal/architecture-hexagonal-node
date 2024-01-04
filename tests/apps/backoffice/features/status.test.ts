@@ -4,6 +4,8 @@ import request from 'supertest'
 
 import { BackofficeBackendApp } from 'src/apps/backoffice/BackofficeBackendApp'
 
+import { startServer } from './server'
+
 let application: BackofficeBackendApp
 
 describe('Check the api status', () => {
@@ -16,8 +18,7 @@ describe('Check the api status', () => {
 })
 
 beforeAll(async () => {
-  application = new BackofficeBackendApp()
-  await application.start()
+  application = await startServer()
 })
 
 afterAll(async () => {
