@@ -54,6 +54,6 @@ jobs:
           pnpm test:ci
         env:
           NODE_ENV: 'test'
-          PORT: ${{ secrets.PORT }}
+          PORT: '6000' # ${{ secrets.PORT }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
