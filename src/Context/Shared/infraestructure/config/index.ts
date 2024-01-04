@@ -1,12 +1,12 @@
-import { from, logger } from 'env-var'
+import { from } from 'env-var'
 import dotenv from 'dotenv'
 
-const env = from(process.env, {}, logger)
+const env = from(process.env, {})
 
 export class Config {
-  nodeEnv?: string
-  port?: string
-  databaseUrl?: string
+  nodeEnv: string
+  port: string
+  databaseUrl: string
 
   constructor () {
     const nodeEnv = process.env.NODE_ENV ?? 'dev'
@@ -16,10 +16,6 @@ export class Config {
       dotenv.config({ path: '.env' })
     }
 
-    this.start()
-  }
-
-  start () {
     const config = this.create()
     this.nodeEnv = config.nodeEnv
     this.port = config.port

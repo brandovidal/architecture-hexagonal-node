@@ -4,7 +4,7 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "lib": ["esnext"],
+    "lib": ["esnext", "dom"],	
     "types": ["reflect-metadata", "node"],
     "sourceMap": false,
     "outDir": "dist",
