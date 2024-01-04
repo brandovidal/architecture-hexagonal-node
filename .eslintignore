@@ -3,7 +3,7 @@ node_modules/
 dist/
 public/
 
-__test__/
+tests/
 e2e/
 
 **/*.config.ts
