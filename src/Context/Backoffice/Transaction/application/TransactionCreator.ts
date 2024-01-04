@@ -6,7 +6,7 @@ import { ObjectId } from '../../../../Context/Shared/domain/ObjectId'
 
 @injectable()
 export default class TransactionCreator {
-  constructor (@inject('TransactionRepository') private readonly repository: TransactionRepository) {}
+  constructor (@inject('Backoffice.Transaction.domain.TransactionRepository') private readonly repository: TransactionRepository) {}
 
   async run (seller_domain: string, kind: string, invoice_number: number, amount: number, total: number, status: string, user_created: string, user_updated: string) {
     const id = ObjectId.random()

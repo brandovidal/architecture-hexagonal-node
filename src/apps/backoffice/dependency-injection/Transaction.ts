@@ -15,8 +15,8 @@ import { TypeOrmClientFactory } from '../../../Context/Shared/infraestructure/pe
 
 const container = new Container()
 
-container.bind('TypeOrmClientFactory').to(TypeOrmClientFactory)
-container.bind('TransactionRepository').to(TypeOrmTransactionRepository)
+container.bind(TypeOrmClientFactory).toSelf()
+container.bind('Backoffice.Transaction.domain.TransactionRepository').to(TypeOrmTransactionRepository)
 
 container.bind('Backoffice.Transaction.application.TransactionReader').to(TransactionReader)
 container.bind(TransactionsGetController).toSelf()
