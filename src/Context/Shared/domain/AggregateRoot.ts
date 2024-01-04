@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export abstract class AggregateRoot {
-  abstract toPrimitives (): unknown
+  abstract toPrimitives (): any
 }
