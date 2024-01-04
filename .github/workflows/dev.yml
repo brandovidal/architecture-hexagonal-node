@@ -5,9 +5,7 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: 
-      name: dev
-      url: https://github.com
+    environment: dev
 
     steps:
       - uses: actions/checkout@v3
