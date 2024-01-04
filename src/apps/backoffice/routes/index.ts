@@ -8,5 +8,5 @@ export function registerRoutes (router: Router) {
 
 export async function register (routerPath: string, router: Router) {
   const route = await import(routerPath)
-  route.default(router)
+  void route.default(router)
 }
