@@ -9,7 +9,7 @@ import { AppContextEnum } from './AppContext'
 const config = new Config()
 
 export class BackofficeBackendApp {
-  server?: Server
+  server!: Server
 
   async start () {
     const port = config.port ?? '5000'
