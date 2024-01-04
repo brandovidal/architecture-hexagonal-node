@@ -11,7 +11,7 @@ import { registerRoutes } from './routes'
 export class Server {
   private readonly express: express.Express
   private readonly port: string
-  private httpServer?: http.Server
+  private httpServer!: http.Server
 
   constructor (port: string) {
     this.port = port
