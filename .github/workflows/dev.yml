@@ -3,10 +3,11 @@ name: Dev CI
 on:
   push:
     branches:
+      - dev
       - feat/*
       - chore/*
       - fix/*
-      - dev
+      - refactor/*
 
 jobs:
   build:
@@ -52,7 +53,7 @@ jobs:
         run: |
           pnpm test:ci
         env:
-          NODE_ENV: 'dev'
+          NODE_ENV: 'test'
           PORT: ${{ secrets.PORT }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
 

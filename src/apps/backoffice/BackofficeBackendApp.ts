@@ -12,8 +12,7 @@ export class BackofficeBackendApp {
   server!: Server
 
   async start () {
-    const port = config.port // ?? '5000'
-    console.log('🚀 ~ file: BackofficeBackendApp.ts:16 ~ BackofficeBackendApp ~ start ~ port:', port)
+    const port = config.port ?? '5000'
     this.server = new Server(port)
 
     await this.startDatabaseConnection()
