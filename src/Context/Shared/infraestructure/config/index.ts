@@ -1,5 +1,5 @@
 import { from } from 'env-var'
-import dotenv from 'dotenv'
+// import dotenv from 'dotenv'
 
 const env = from(process.env, {})
 
@@ -9,12 +9,12 @@ export class Config {
   databaseUrl: string
 
   constructor () {
-    const nodeEnv = process.env.NODE_ENV ?? 'dev'
-    if (nodeEnv !== 'prod') {
-      dotenv.config({ path: '.env.' + nodeEnv })
-    } else {
-      dotenv.config({ path: '.env' })
-    }
+    // const nodeEnv = process.env.NODE_ENV ?? 'dev'
+    // if (nodeEnv !== 'prod') {
+    //   dotenv.config({ path: '.env.' + nodeEnv })
+    // } else {
+    //   dotenv.config({ path: '.env' })
+    // }
 
     const config = this.create()
     this.nodeEnv = config.nodeEnv
