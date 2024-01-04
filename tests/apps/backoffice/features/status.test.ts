@@ -9,6 +9,7 @@ let application: BackofficeBackendApp
 describe('Check the api status', () => {
   it('I send a GET request to /v1/status, it should return 200', async () => {
     const res = await request(application.httpServer).get('/v1/status')
+    console.log("🚀 ~ file: status.test.ts:12 ~ it ~ res:", res.status, res.body)
 
     expect(res.statusCode).toEqual(200)
     expect(res.headers['content-type']).toEqual('application/json; charset=utf-8')

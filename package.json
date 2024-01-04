@@ -10,7 +10,7 @@
     "lint:fix": "eslint src/**/*.ts --fix",
     "test": "pnpm run test:features",
     "test:features": "dotenv -e .env.test -- vitest --dir tests/apps/backoffice/features",
-    "test:ci": "vitest --run",
+    "test:ci": "dotenv -e .env.test -- vitest --run",
     "test:ui": "dotenv -e .env.test -- vitest --ui",
     "build": "pnpm run clean:build && tsc",
     "start": "dotenv -e .env -- node ./dist/src/apps/backoffice/start.js",
