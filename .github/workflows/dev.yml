@@ -8,8 +8,6 @@ jobs:
     environment: 
       name: dev
       url: https://github.com
-    env:
-      PORT: ${{ secrets.PORT }}
 
     steps:
       - uses: actions/checkout@v3
@@ -32,6 +30,6 @@ jobs:
         run: |
           pnpm test:ci
         env:
-          PORT: echo $PORT
+          PORT: ${{ secrets.PORT }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
