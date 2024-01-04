@@ -14,7 +14,7 @@ interface TransactionDeleteRequest extends Request {
 
 @injectable()
 export default class TransactionDeleteController implements Controller {
-  constructor (@inject('TransactionDeletor') private readonly deletor: TransactionDeletor) {}
+  constructor (@inject('Backoffice.Transaction.application.TransactionDeletor') private readonly deletor: TransactionDeletor) {}
 
   async run (req: TransactionDeleteRequest, res: Response): Promise<void> {
     try {

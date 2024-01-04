@@ -22,7 +22,7 @@ interface TransactionPutRequest extends Request {
 
 @injectable()
 export default class TransactionPutController implements Controller {
-  constructor (@inject('TransactionUpdator') private readonly updator: TransactionUpdator) {}
+  constructor (@inject('Backoffice.Transaction.application.TransactionUpdator') private readonly updator: TransactionUpdator) {}
 
   async run (req: TransactionPutRequest, res: Response): Promise<void> {
     try {

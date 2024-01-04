@@ -22,7 +22,7 @@ interface TransactionPostRequest extends Request {
 
 @injectable()
 export default class TransactionPostController implements Controller {
-  constructor (@inject('TransactionCreator') private readonly creator: TransactionCreator) {}
+  constructor (@inject('Backoffice.Transaction.application.TransactionCreator') private readonly creator: TransactionCreator) {}
 
   async run (req: TransactionPostRequest, res: Response): Promise<void> {
     try {

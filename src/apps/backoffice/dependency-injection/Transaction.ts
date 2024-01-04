@@ -19,15 +19,15 @@ container.bind('TypeOrmClientFactory').to(TypeOrmClientFactory)
 container.bind('TransactionRepository').to(TypeOrmTransactionRepository)
 
 container.bind('Backoffice.Transaction.application.TransactionReader').to(TransactionReader)
-container.bind<TransactionsGetController>(TransactionsGetController).toSelf()
+container.bind(TransactionsGetController).toSelf()
 
-container.bind('TransactionCreator').to(TransactionCreator)
-container.bind('TransactionPostController').to(TransactionPostController)
+container.bind('Backoffice.Transaction.application.TransactionCreator').to(TransactionCreator)
+container.bind(TransactionPostController).toSelf()
 
-container.bind('TransactionUpdator').to(TransactionUpdator)
-container.bind('TransactionPutController').to(TransactionPutController)
+container.bind('Backoffice.Transaction.application.TransactionUpdator').to(TransactionUpdator)
+container.bind(TransactionPutController).toSelf()
 
-container.bind('TransactionDeletor').to(TransactionDeletor)
-container.bind('TransactionDeleteController').to(TransactionDeleteController)
+container.bind('Backoffice.Transaction.application.TransactionDeletor').to(TransactionDeletor)
+container.bind(TransactionDeleteController).toSelf()
 
 export default container
