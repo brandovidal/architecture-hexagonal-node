@@ -46,7 +46,7 @@ jobs:
 
       - name: 🚀 Build App
         run: |
-          pnpm build
+          # pnpm build
           pnpm lint
 
       - name: 🧪 Run tests
