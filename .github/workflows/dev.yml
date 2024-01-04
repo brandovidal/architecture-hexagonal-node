@@ -30,6 +30,7 @@ jobs:
         run: |
           pnpm test:ci
         env:
+          NODE_ENV: 'dev'
           PORT: ${{ secrets.PORT }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
