@@ -28,8 +28,6 @@ jobs:
 
       - name: 🧪 Run tests
         run: |
-          echo ${{ secrets.PORT }}
-          echo ${{ secrets.DATABASE_URL }}
           pnpm test:ci
         env:
           PORT: ${{ secrets.PORT }}
