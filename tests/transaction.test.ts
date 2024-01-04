@@ -12,6 +12,7 @@ import TransactionDeletor from 'src/Context/Backoffice/Transaction/application/T
 
 class MockTransactionRepository implements TransactionRepository {
   private readonly transactions: Transaction[] = []
+
   public async searchAll (): Promise<Transaction[]> {
     return this.transactions
   }

@@ -11,8 +11,6 @@ import { TypeOrmRepository } from '../../../../Shared/infraestructure/persistenc
 
 import { AppContextEnum } from '../../../../../apps/backoffice/AppContext'
 
-import type { Nullable } from '../../../../../Context/Shared/domain/Nullable'
-
 @injectable()
 export class TypeOrmTransactionRepository extends TypeOrmRepository<Transaction> implements TransactionRepository {
   constructor () {
@@ -21,12 +19,6 @@ export class TypeOrmTransactionRepository extends TypeOrmRepository<Transaction>
 
   public save (transaction: Transaction): Promise<void> {
     return this.persist(transaction)
-  }
-
-  public async searchById (id: string): Promise<Nullable<Transaction>> {
-    const repository = await this.repository()
-    const document = await repository.findOneBy({ id })
-    return document
   }
 
   public async searchAll (): Promise<Transaction[]> {
