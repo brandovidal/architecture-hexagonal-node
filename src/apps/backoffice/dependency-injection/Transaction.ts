@@ -18,8 +18,8 @@ const container = new Container()
 container.bind('TypeOrmClientFactory').to(TypeOrmClientFactory)
 container.bind('TransactionRepository').to(TypeOrmTransactionRepository)
 
-container.bind('TransactionReader').to(TransactionReader)
-container.bind('Apps.backoffice.controllers.TransactionsGetController').to(TransactionsGetController)
+container.bind('Backoffice.Transaction.application.TransactionReader').to(TransactionReader)
+container.bind<TransactionsGetController>(TransactionsGetController).toSelf()
 
 container.bind('TransactionCreator').to(TransactionCreator)
 container.bind('TransactionPostController').to(TransactionPostController)
