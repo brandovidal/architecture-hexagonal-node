@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: 
       name: dev
+      url: https://github.com
     env:
       PORT: ${{ secrets.PORT }}
 
