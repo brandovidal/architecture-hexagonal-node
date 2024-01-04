@@ -5,6 +5,10 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: 
+      name: dev
+    env:
+      PORT: ${{ secrets.PORT }}
 
     steps:
       - uses: actions/checkout@v3
@@ -27,6 +31,6 @@ jobs:
         run: |
           pnpm test:ci
         env:
-          PORT: ${{ secrets.PORT }}
+          PORT: echo $PORT
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
