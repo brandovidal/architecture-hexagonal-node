@@ -7,8 +7,10 @@ import type { Controller } from './Controller'
 import TransactionUpdator from '../../../Context/Backoffice/Transaction/application/TransactionUpdator'
 
 interface TransactionPutRequest extends Request {
+  params: {
+    id?: string
+  }
   body: {
-    id: string
     seller_domain: string
     kind: string
     invoice_number: number
@@ -26,9 +28,11 @@ export default class TransactionPutController implements Controller {
 
   async run (req: TransactionPutRequest, res: Response): Promise<void> {
     try {
-      const { id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated } = req.body
+      const { id } = req.params
 
-      await this.updator.run(id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated)
+      const { seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated } = req.body
+
+      await this.updator.run(id!, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated)
 
       res.status(httpStatus.OK).send({
         success: true,

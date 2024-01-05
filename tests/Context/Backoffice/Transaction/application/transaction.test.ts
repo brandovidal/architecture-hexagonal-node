@@ -2,8 +2,8 @@ import 'reflect-metadata'
 
 import { describe, expect, it, beforeAll } from 'vitest'
 
-import { Transaction } from '../src/Context/Backoffice/Transaction/domain/Transaction'
-import type { TransactionRepository } from '../src/Context/Backoffice/Transaction/domain/TransactionRepository'
+import { Transaction } from 'src/Context/Backoffice/Transaction/domain/Transaction'
+import type { TransactionRepository } from 'src/Context/Backoffice/Transaction/domain/TransactionRepository'
 
 import TransactionReader from 'src/Context/Backoffice/Transaction/application/TransactionReader'
 import TransactionCreator from 'src/Context/Backoffice/Transaction/application/TransactionCreator'
