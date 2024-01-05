@@ -9,7 +9,7 @@ import TransactionDeleteController from '../controllers/TransactionDeleteControl
 
 function register (router: Router) {
   const transactionGetController = container.resolve(TransactionsGetController)
-  router.get('/transaction', (req: Request, res: Response) => transactionGetController.run(req, res))
+  router.get('/transactions', (req: Request, res: Response) => transactionGetController.run(req, res))
 
   const transactionPostController = container.resolve(TransactionPostController)
   router.post('/transaction', (req: Request, res: Response) => transactionPostController.run(req, res))
