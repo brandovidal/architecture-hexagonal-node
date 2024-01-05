@@ -8,7 +8,7 @@ import TransactionCreator from '../../../Context/Backoffice/Transaction/applicat
 
 interface TransactionPostRequest extends Request {
   body: {
-    id: number
+    id: string
     seller_domain: string
     kind: string
     invoice_number: number
@@ -26,9 +26,9 @@ export default class TransactionPostController implements Controller {
 
   async run (req: TransactionPostRequest, res: Response): Promise<void> {
     try {
-      const { seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated } = req.body
+      const { id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated } = req.body
 
-      await this.creator.run(seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated)
+      await this.creator.run(id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated)
 
       res.status(httpStatus.CREATED).send({
         success: true,
