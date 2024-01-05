@@ -4,8 +4,13 @@ import { FileTransactionRepository } from 'src/Context/Backoffice/Transaction/in
 describe('Save Transaction', () => {
   it('should save a transaction', async () => {
     const repository = new FileTransactionRepository()
-    const transaction = new Transaction('1', 'example.com', 'WALLET', 1, 100, 100, 'PENDING', 'user', 'user')
+    const expectedTransaction = new Transaction('1', 'example.com', 'WALLET', 1, 100, 100, 'PENDING', 'user', 'user')
 
-    await repository.save(transaction)
+    await repository.save(expectedTransaction)
   })
+})
+
+afterAll(async () => {
+  const repository = new FileTransactionRepository()
+  await repository.delete('1')
 })
