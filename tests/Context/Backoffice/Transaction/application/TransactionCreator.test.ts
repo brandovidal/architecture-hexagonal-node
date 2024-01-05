@@ -1,21 +1,14 @@
 import 'reflect-metadata'
 
+import { Transaction } from 'src/Context/Backoffice/Transaction/domain/Transaction'
+
 import TransactionCreator from 'src/Context/Backoffice/Transaction/application/TransactionCreator'
 
-import { Transaction } from 'src/Context/Backoffice/Transaction/domain/Transaction'
-import { TransactionRepository } from 'src/Context/Backoffice/Transaction/domain/TransactionRepository'
+import { TransactionRepositoryMock } from '../__mocks__/CourseRepositoryMock'
 
 describe('TransactionCreator', () => {
   it('should create a valid transaction', async () => {
-    const transaction = new Transaction('1', 'example.com', 'WALLET', 1, 100, 100, 'PENDING', 'admin', 'admin', new Date(), new Date())
-    expect(transaction).toBeInstanceOf(Transaction)
-
-    const repository: TransactionRepository = {
-      save: vi.fn(),
-      // searchAll: vi.fn(),
-      // update: vi.fn(),
-      // delete: vi.fn()
-    }
+    const repository = new TransactionRepositoryMock()
 
     const creator = new TransactionCreator(repository)
 
@@ -35,6 +28,6 @@ describe('TransactionCreator', () => {
 
     await creator.run(id, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, createdAt, updatedAt)
 
-    expect(repository.save).toHaveBeenCalledWith(expectedTransaction)
+    repository.assertSaveHasBeenCalledWith(expectedTransaction)
   })
 })
