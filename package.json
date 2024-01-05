@@ -39,7 +39,7 @@
     "reflect-metadata": "0.2.1",
     "swagger-ui-express": "5.0.0",
     "tsoa": "6.0.0",
-    "typeorm": "0.3.19"
+    "typeorm": "0.3.17"
   },
   "devDependencies": {
     "@types/cors": "2.8.17",

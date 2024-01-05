@@ -22,7 +22,7 @@ export class TypeOrmTransactionRepository extends TypeOrmRepository<Transaction>
   }
 
   public async searchAll (): Promise<Transaction[]> {
-    const options: MongoFindManyOptions = { order: { createdAt: 'ASC' }, cache: true }
+    const options: MongoFindManyOptions = { order: { createdAt: 'ASC' } }
     return await this.searchByFilters(options)
   }
 

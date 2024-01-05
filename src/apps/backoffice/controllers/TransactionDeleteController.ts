@@ -7,8 +7,8 @@ import type { Controller } from './Controller'
 import TransactionDeletor from '../../../Context/Backoffice/Transaction/application/TransactionDeletor'
 
 interface TransactionDeleteRequest extends Request {
-  body: {
-    id: string
+  params: {
+    id?: string
   }
 }
 
@@ -18,9 +18,9 @@ export default class TransactionDeleteController implements Controller {
 
   async run (req: TransactionDeleteRequest, res: Response): Promise<void> {
     try {
-      const { id } = req.body
+      const { id } = req.params
 
-      await this.deletor.run(id)
+      await this.deletor.run(id!)
 
       res.status(httpStatus.OK).send({
         success: true,

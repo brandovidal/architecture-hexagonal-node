@@ -44,7 +44,7 @@ describe('Check the transaction api', () => {
 
     const transactionId = transactions[0].id
 
-    await request(application.httpServer).delete('/v1/transaction').send({
+    await request(application.httpServer).delete(`/v1/transaction/${transactionId}`).send({
       id: transactionId
     })
   })

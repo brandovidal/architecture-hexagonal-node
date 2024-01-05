@@ -15,10 +15,10 @@ function register (router: Router) {
   router.post('/transaction', (req: Request, res: Response) => transactionPostController.run(req, res))
 
   const transactionPutController = container.resolve(TransactionPutController)
-  router.put('/transaction', (req: Request, res: Response) => transactionPutController.run(req, res))
+  router.put('/transaction/:id', (req: Request, res: Response) => transactionPutController.run(req, res))
 
   const transactionDeleteController = container.resolve(TransactionDeleteController)
-  router.delete('/transaction', (req: Request, res: Response) => transactionDeleteController.run(req, res))
+  router.delete('/transaction/:id', (req: Request, res: Response) => transactionDeleteController.run(req, res))
 }
 
 export default register
