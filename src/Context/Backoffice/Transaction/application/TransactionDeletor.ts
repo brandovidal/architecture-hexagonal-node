@@ -6,6 +6,6 @@ export default class TransactionDeletor {
   constructor (@inject('Backoffice.Transaction.domain.TransactionRepository') private readonly repository: TransactionRepository) {}
 
   async run (id: string) {
-    await this.repository.delete(id)
+    await this.repository.delete!(id)
   }
 }
