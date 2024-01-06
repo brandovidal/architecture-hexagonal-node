@@ -9,7 +9,7 @@ export class FileTransactionRepository implements TransactionRepository {
   private readonly FILE_PATH = path.join(__dirname, '/transactions')
 
   async save (transaction: Transaction) {
-    void fs.promises.writeFile(this.filePath(transaction.id), serialize(transaction))
+    void fs.promises.writeFile(this.filePath(transaction.id.value), serialize(transaction))
   }
 
   private filePath (id: string) {
@@ -19,7 +19,7 @@ export class FileTransactionRepository implements TransactionRepository {
   async search (transactionId: string): Promise<Transaction> {
     const courseData = await fs.promises.readFile(this.filePath(transactionId))
     const { id, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, createdAt, updatedAt } = deserialize(courseData)
-    return new Transaction(id, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, createdAt, updatedAt)
+    return new Transaction({ id, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, createdAt, updatedAt })
   }
 
   async delete (id: string) {
