@@ -54,7 +54,17 @@ describe.skip('Transaction', () => {
 
   it('should save an transaction', async () => {
     const transaction = new Transaction('1', 'example.com', 'WALLET', 1, 100, 100, 'PENDING', 'admin', 'admin', new Date(), new Date())
-    void transactionCreator.run('1', 'example.com', 'WALLET', 1, 100, 100, 'PENDING', 'admin', 'admin')
+    void transactionCreator.run({
+      id: '1',
+      seller_domain: 'example.com',
+      kind: 'WALLET',
+      invoice_number: 1,
+      amount: 100,
+      total: 100,
+      status: 'PENDING',
+      user_created: 'admin',
+      user_updated: 'admin',
+    })
 
     const transactionListExpected = await transactionsFinder.run()
     expect(transactionListExpected.length).toEqual(1)

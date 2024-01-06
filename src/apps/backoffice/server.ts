@@ -1,4 +1,5 @@
-import express, { Request, Response, Router, json, urlencoded } from 'express'
+import type { Request, Response } from 'express'
+import express, { Router, json, urlencoded } from 'express'
 
 import helmet from 'helmet'
 import type * as http from 'http'
@@ -48,11 +49,12 @@ export class Server {
   }
 
   async listen (): Promise<void> {
-    return await new Promise(resolve => {
+    await new Promise(resolve => {
       this.httpServer = this.express.listen(this.port, () => {
         console.log(`  Node Backend App is running at http://localhost:${this.port} in ${this.express.get('env')} mode`)
         console.log('  Press CTRL-C to stop\n')
-        resolve()
+
+        resolve(1)
       })
     })
   }
@@ -62,18 +64,16 @@ export class Server {
   }
 
   async stop (): Promise<void> {
-    return await new Promise((resolve, reject) => {
+    await new Promise((resolve, reject) => {
       if (this.httpServer !== null && this.httpServer !== undefined) {
         this.httpServer.close(error => {
           if (error !== null) {
             reject(error)
-            return
           }
-          resolve()
         })
       }
 
-      resolve()
+      resolve(1)
     })
   }
 }
