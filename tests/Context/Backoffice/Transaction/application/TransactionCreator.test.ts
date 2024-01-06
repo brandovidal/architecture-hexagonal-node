@@ -17,19 +17,19 @@ describe('TransactionCreator', () => {
     const creator = new TransactionCreator(repository)
 
     const id = "id"
-    const sellerDomain = "example.com"
+    const seller_domain = "example.com"
     const kind = "WALLET"
-    const invoiceNumber = 1
+    const invoice_number = 1
     const amount = 100
     const total = 100
     const status = "PENDING"
-    const userCreated = "admin"
-    const userUpdated = "admin"
-    const createdAt = new Date()
-    const updatedAt = new Date()
-    const expectedTransaction = new Transaction(id, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, createdAt, updatedAt)
+    const user_created = "admin"
+    const user_updated = "admin"
+    const created_at = new Date()
+    const updated_at = new Date()
+    const expectedTransaction = new Transaction(id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated, created_at, updated_at)
 
-    await creator.run(id, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, createdAt, updatedAt)
+    await creator.run({ id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated, created_at, updated_at })
 
     repository.assertSaveHasBeenCalledWith(expectedTransaction)
   })

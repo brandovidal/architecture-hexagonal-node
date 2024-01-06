@@ -4,9 +4,16 @@ import request from 'supertest'
 
 import { BackofficeBackendApp } from 'src/apps/backoffice/BackofficeBackendApp'
 
-import { startServer } from './server'
-
 let application: BackofficeBackendApp
+
+beforeAll(async () => {
+  application = new BackofficeBackendApp()
+  await application.start()
+})
+
+afterAll(async () => {
+  await application.stop()
+})
 
 describe('Check the transaction api', () => {
   it('I send a GET request to /v1/transactions, it should return 200', async () => {
@@ -19,12 +26,11 @@ describe('Check the transaction api', () => {
 
   it('I send a POST request to /v1/transaction, it should return 201', async () => {
     const response = await request(application.httpServer).post('/v1/transaction').send({
-      seller_domain: 'test',
-      kind: 'test',
-      invoice_number: 'test',
-      amount: 0,
-      total: 0,
-      status: 'test',
+      seller_domain: 'test.com',
+      kind: 'WALLET',
+      invoice_number: 8,
+      amount: 10,
+      status: 'PENDING',
       user_created: 'test',
       user_updated: 'test'
     })
@@ -48,12 +54,4 @@ describe('Check the transaction api', () => {
       id: transactionId
     })
   })
-})
-
-beforeAll(async () => {
-  application = await startServer()
-})
-
-afterAll(async () => {
-  await application.stop()
 })

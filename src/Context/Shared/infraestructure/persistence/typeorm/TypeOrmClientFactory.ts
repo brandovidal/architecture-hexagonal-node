@@ -5,6 +5,8 @@ import { injectable } from 'inversify'
 
 import type { Nullable } from '../../../../../Context/Shared/domain/Nullable'
 
+import { TransactionEntity } from '../../../../../Context/Backoffice/Transaction/infraestructure/persistence/typeorm/TransactionEntity'
+
 @injectable()
 export class TypeOrmClientFactory {
   private static readonly clients: Record<string, DataSource> = {}
@@ -27,7 +29,8 @@ export class TypeOrmClientFactory {
         appname: contextName,
         type: 'mongodb',
         url: config.url,
-        entities: [__dirname + '/../../../../**/**/infraestructure/persistence/typeorm/*.{js,ts}'],
+        // entities: [__dirname + '/../../../../**/**/infraestructure/persistence/typeorm/*.{js,ts}'],
+        entities: [TransactionEntity],
         synchronize: true,
         logging: true
       })
