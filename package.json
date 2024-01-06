@@ -19,8 +19,8 @@
     "clean:build": "rimraf dist public",
     "clean:install": "rimraf node_modules package-lock.json yarn.lock pnpm-lock.yaml bun.lockb",
     "clean": "pnpm run clean:build && pnpm run clean:install",
-    "db:init": "docker build -t mongo .",
-    "db:generate": "docker run -d -p 27017:27017 --name architecture-hexagonal-node-db mongo",
+    "db:init": "docker pull mongo:latest",
+    "db:generate": "docker run -d -p 27017:27017 --name=architecture-hexagonal-node-db mongo",
     "db:stop": "docker stop architecture-hexagonal-node-db",
     "db:start": "docker exec -it architecture-hexagonal-node-db mongo"
   },
