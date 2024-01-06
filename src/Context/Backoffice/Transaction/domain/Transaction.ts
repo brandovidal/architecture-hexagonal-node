@@ -1,5 +1,5 @@
 import { Uuid } from '../../../../Context/Shared/domain/value-object/Uuid'
-import { ObjectId } from '../../../../Context/Shared/domain/ObjectId'
+import { ObjectId } from '../../../Shared/domain/value-object/ObjectId'
 
 export class Transaction {
   _id!: ObjectId
