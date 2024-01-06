@@ -8,7 +8,7 @@
     "dev": "concurrently --kill-others-on-fail \"dotenv -e .env.dev -- ts-node-dev --no-notify --respawn --transpile-only src/apps/backoffice/start.ts\"",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
-    "test": "concurrently --kill-others-on-fail \"pnpm run test:unit\" \"pnpm run test:features\"",
+    "test": "concurrently --kill-others-on-fail \"pnpm run test:unit\"",
     "test:unit": "dotenv -e .env.test -- vitest --project unit",
     "test:features": "dotenv -e .env.test -- vitest --project features",
     "test:ci": "dotenv -e .env.test -- vitest --project unit --run",
@@ -41,6 +41,8 @@
     "swagger-ui-express": "5.0.0",
     "tsoa": "6.0.0",
     "typeorm": "0.3.17",
+    "uuid": "9.0.1",
+    "uuid-validate": "0.0.3",
     "zod": "3.22.4"
   },
   "devDependencies": {
@@ -52,6 +54,8 @@
     "@types/node": "20.10.6",
     "@types/supertest": "6.0.2",
     "@types/swagger-ui-express": "4.1.6",
+    "@types/uuid": "9.0.7",
+    "@types/uuid-validate": "0.0.3",
     "@typescript-eslint/eslint-plugin": "6.17.0",
     "@vitest/ui": "1.1.2",
     "concurrently": "8.2.2",

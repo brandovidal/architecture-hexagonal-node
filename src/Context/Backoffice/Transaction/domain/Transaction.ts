@@ -1,8 +1,9 @@
-import type { ObjectId } from '../../../../Context/Shared/domain/ObjectId'
+import { Uuid } from '../../../../Context/Shared/domain/value-object/Uuid'
+import { ObjectId } from '../../../../Context/Shared/domain/ObjectId'
 
 export class Transaction {
   _id!: ObjectId
-  id!: string
+  id!: Uuid
 
   sellerDomain!: string
   kind!: string
@@ -21,7 +22,7 @@ export class Transaction {
   updatedAt?: Date
 
   constructor (
-    id: string,
+    id: Uuid,
     sellerDomain: string,
     kind: string,
     invoiceNumber: number,
@@ -47,7 +48,7 @@ export class Transaction {
   }
 
   static fromPrimitives (plainData: {
-    id: string
+    id: Uuid
     seller_domain: string
     kind: string
     invoice_number: number
@@ -76,7 +77,7 @@ export class Transaction {
 
   toPrimitives () {
     return {
-      id: this.id,
+      id: this.id.value,
       seller_domain: this.sellerDomain,
       kind: this.kind,
       invoice_number: this.invoiceNumber,

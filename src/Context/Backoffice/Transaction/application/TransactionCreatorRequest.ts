@@ -1,3 +1,5 @@
+import { Uuid } from "../../../../Context/Shared/domain/value-object/Uuid"
+
 export interface TransactionCreatorRequest {
   id: string
   seller_domain: string

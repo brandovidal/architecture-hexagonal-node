@@ -5,6 +5,7 @@ import { Transaction } from 'src/Context/Backoffice/Transaction/domain/Transacti
 import TransactionCreator from 'src/Context/Backoffice/Transaction/application/TransactionCreator'
 
 import { TransactionRepositoryMock } from '../__mocks__/CourseRepositoryMock'
+import { Uuid } from 'src/Context/Shared/domain/value-object/Uuid'
 
 describe('TransactionCreator', () => {
   let repository: TransactionRepositoryMock
@@ -16,7 +17,7 @@ describe('TransactionCreator', () => {
   it('should create a valid transaction', async () => {
     const creator = new TransactionCreator(repository)
 
-    const id = "id"
+    const id = new Uuid('95ecc380-afe9-11e4-9b6c-751b66dd541e')
     const seller_domain = "example.com"
     const kind = "WALLET"
     const invoice_number = 1
@@ -29,7 +30,7 @@ describe('TransactionCreator', () => {
     const updated_at = new Date()
     const expectedTransaction = new Transaction(id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated, created_at, updated_at)
 
-    await creator.run({ id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated, created_at, updated_at })
+    await creator.run({ id: id.value, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated, created_at, updated_at })
 
     repository.assertSaveHasBeenCalledWith(expectedTransaction)
   })

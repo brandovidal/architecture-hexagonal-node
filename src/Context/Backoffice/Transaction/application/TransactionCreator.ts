@@ -3,16 +3,16 @@ import { inject, injectable } from 'inversify'
 import { Transaction } from '../domain/Transaction'
 import { TransactionRepository } from '../domain/TransactionRepository'
 
-import { ObjectId } from '../../../../Context/Shared/domain/ObjectId'
-
 import type { TransactionCreatorRequest } from './TransactionCreatorRequest'
+
+import { Uuid } from '../../../../Context/Shared/domain/value-object/Uuid'
 
 @injectable()
 export default class TransactionCreator {
   constructor (@inject('Backoffice.Transaction.domain.TransactionRepository') private readonly repository: TransactionRepository) {}
 
   async run (request: TransactionCreatorRequest): Promise<void> {
-    const id = request.id ?? ObjectId.random()
+    const id = request.id ? new Uuid(request.id) : Uuid.random()
     const createdAt = request.created_at ?? new Date()
     const updatedAt = request.updated_at ?? new Date()
 
