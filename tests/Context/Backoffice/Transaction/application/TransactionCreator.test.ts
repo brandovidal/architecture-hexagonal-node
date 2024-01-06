@@ -29,7 +29,7 @@ describe('TransactionCreator', () => {
     const updatedAt = new Date()
     const expectedTransaction = new Transaction(id, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, createdAt, updatedAt)
 
-    await creator.run(id, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, createdAt, updatedAt)
+    await creator.run({ id, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, createdAt, updatedAt })
 
     repository.assertSaveHasBeenCalledWith(expectedTransaction)
   })
