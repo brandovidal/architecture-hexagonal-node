@@ -1,6 +1,9 @@
 import { EntitySchema } from 'typeorm'
 
+import { ValueObjectTransformer } from '../../../../../Shared/infraestructure/persistence/typeorm/ValueObjectTransformer'
+
 import { Transaction } from '../../../domain/Transaction'
+import { TransactionId } from '../../../domain/TransactionId'
 
 export const TransactionEntity = new EntitySchema<Transaction>({
   name: 'Transaction',
@@ -14,7 +17,8 @@ export const TransactionEntity = new EntitySchema<Transaction>({
     },
     id: {
       type: String,
-      primary: true
+      primary: true,
+      transformer: ValueObjectTransformer(TransactionId)
     },
     sellerDomain: {
       name: 'seller_domain',
