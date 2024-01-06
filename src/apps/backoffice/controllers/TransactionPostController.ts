@@ -28,7 +28,7 @@ export default class TransactionPostController implements Controller {
     try {
       const { id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated } = req.body
 
-      await this.creator.run(id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated)
+      await this.creator.run({ id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated })
 
       res.status(httpStatus.CREATED).send({
         success: true,

@@ -55,5 +55,5 @@ beforeAll(async () => {
 })
 
 afterAll(async () => {
-  await application.stop()
+  await application?.stop()
 })

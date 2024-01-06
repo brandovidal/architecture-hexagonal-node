@@ -13,10 +13,10 @@ export default class TransactionCreator {
 
   async run (request: TransactionCreatorRequest): Promise<void> {
     const id = request.id ?? ObjectId.random()
-    const createdAt = request.createdAt ?? new Date()
-    const updatedAt = request.updatedAt ?? new Date()
+    const createdAt = request.created_at ?? new Date()
+    const updatedAt = request.updated_at ?? new Date()
 
-    const transaction = new Transaction(id, request.sellerDomain, request.kind, request.invoiceNumber, request.amount, request.total, request.status, request.userCreated, request.userUpdated, createdAt, updatedAt)
+    const transaction = new Transaction(id, request.seller_domain, request.kind, request.invoice_number, request.amount, request.total, request.status, request.user_created, request.user_updated, createdAt, updatedAt)
     await this.repository.save(transaction)
   }
 }

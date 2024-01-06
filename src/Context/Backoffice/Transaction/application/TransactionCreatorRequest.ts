@@ -1,13 +1,13 @@
 export interface TransactionCreatorRequest {
   id: string
-  sellerDomain: string
+  seller_domain: string
   kind: string
-  invoiceNumber: number
+  invoice_number: number
   amount: number
   total: number
   status: string
-  userCreated: string
-  userUpdated: string
-  createdAt: Date
-  updatedAt: Date
+  user_created: string
+  user_updated: string
+  created_at?: Date
+  updated_at?: Date
 }
