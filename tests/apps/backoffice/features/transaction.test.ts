@@ -4,13 +4,14 @@ import request from 'supertest'
 
 import { BackofficeBackendApp } from 'src/apps/backoffice/BackofficeBackendApp'
 
-import { startServer } from './server'
+// import { startServer } from './server'
 
 let application: BackofficeBackendApp
 
 describe('Check the transaction api', () => {
   it('I send a GET request to /v1/transactions, it should return 200', async () => {
     const response = await request(application.httpServer).get('/v1/transactions')
+    console.log("🚀 ~ file: transaction.test.ts:14 ~ it ~ response:", response.status, response.body)
 
     expect(response.statusCode).toEqual(200)
     expect(response.headers['content-type']).toEqual('application/json; charset=utf-8')
@@ -19,12 +20,11 @@ describe('Check the transaction api', () => {
 
   it('I send a POST request to /v1/transaction, it should return 201', async () => {
     const response = await request(application.httpServer).post('/v1/transaction').send({
-      seller_domain: 'test',
-      kind: 'test',
-      invoice_number: 'test',
-      amount: 0,
-      total: 0,
-      status: 'test',
+      seller_domain: 'test.com',
+      kind: 'WALLET',
+      invoice_number: 8,
+      amount: 10,
+      status: 'PENDING',
       user_created: 'test',
       user_updated: 'test'
     })
@@ -51,7 +51,8 @@ describe('Check the transaction api', () => {
 })
 
 beforeAll(async () => {
-  application = await startServer()
+  application = new BackofficeBackendApp()
+  await application.start()
 })
 
 afterAll(async () => {

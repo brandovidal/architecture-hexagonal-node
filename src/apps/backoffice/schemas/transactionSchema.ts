@@ -15,10 +15,10 @@ export const createTransactionSchema = object({
     ),
     kind: z.enum(KIND_OPTIONS),
     invoice_number: number({ required_error: 'invoice_number is required', invalid_type_error: 'invoice_number must be a number' })
-      .nonpositive('invoice_number must be a positive number')
+      .nonnegative('invoice_number must be a positive number')
       .nullish(),
     amount: number({ required_error: 'amount is required', invalid_type_error: 'amount must be a number' }).positive('amount must be a positive number'),
-    total: number({ required_error: 'total is required', invalid_type_error: 'total must be a number' }).nonpositive('total must be a positive number').nullish(),
+    total: number({ required_error: 'total is required', invalid_type_error: 'total must be a number' }).nonnegative('total must be a positive number').nullish(),
     status: z.enum(STATUS_OPTIONS).nullish(),
     user_created: string({ required_error: 'user_created is required', invalid_type_error: 'user_created must be a string' }).nullish(),
     user_updated: string({ required_error: 'user_updated is required', invalid_type_error: 'user_updated must be a string' }).nullish(),

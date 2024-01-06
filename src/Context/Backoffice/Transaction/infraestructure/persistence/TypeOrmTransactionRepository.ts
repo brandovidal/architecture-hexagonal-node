@@ -2,7 +2,6 @@ import type { EntitySchema } from 'typeorm'
 import { injectable } from 'inversify'
 
 import { TransactionEntity } from './typeorm/TransactionEntity'
-import { type MongoFindManyOptions } from 'typeorm/find-options/mongodb/MongoFindManyOptions'
 
 import type { Transaction } from '../../domain/Transaction'
 import type { TransactionRepository } from '../../domain/TransactionRepository'
@@ -22,7 +21,7 @@ export class TypeOrmTransactionRepository extends TypeOrmRepository<Transaction>
   }
 
   public async searchAll (): Promise<Transaction[]> {
-    const options: MongoFindManyOptions = { order: { createdAt: 'ASC' } }
+    const options = { order: { createdAt: 'ASC' } }
     return await this.searchByFilters(options)
   }
 

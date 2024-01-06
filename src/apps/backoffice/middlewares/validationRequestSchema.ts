@@ -8,6 +8,7 @@ const validationRequestSchema = (schema: AnyZodObject) => (req: Request, res: Re
 
   if (!result.success) {
     const errors = result.error.errors
+    console.error('Validation error', errors)
 
     res.status(httpStatus.UNPROCESSABLE_ENTITY).send({
       success: false,
