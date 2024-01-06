@@ -2,8 +2,10 @@ import 'reflect-metadata'
 
 import { BackofficeBackendApp } from 'src/apps/backoffice/BackofficeBackendApp'
 
+let application: BackofficeBackendApp
+
 export async function startServer () {
-  const application = new BackofficeBackendApp()
+  application = new BackofficeBackendApp()
 
   if (!application.httpServer) {
     console.log('Application not started')
@@ -12,3 +14,11 @@ export async function startServer () {
 
   return application
 }
+
+// beforeAll(async () => {
+//   await startServer()
+// })
+
+// afterAll(async () => {
+//   await application.stop()
+// })

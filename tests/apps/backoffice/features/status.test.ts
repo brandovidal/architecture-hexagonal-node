@@ -9,7 +9,7 @@ import { BackofficeBackendApp } from 'src/apps/backoffice/BackofficeBackendApp'
 let application: BackofficeBackendApp
 
 describe.skip('Check the status api', () => {
-  it('I send a GET request to /v1/status, it should return 200', async () => {
+  it.skip('I send a GET request to /v1/status, it should return 200', async () => {
     const response = await request(application.httpServer).get('/v1/status')
 
     expect(response.statusCode).toEqual(200)
