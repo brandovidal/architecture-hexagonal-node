@@ -5,7 +5,7 @@ import { TransactionRepository } from '../domain/TransactionRepository'
 
 import { ObjectId } from '../../../../Context/Shared/domain/ObjectId'
 
-import { TransactionCreatorRequest } from './TransactionCreatorRequest'
+import type { TransactionCreatorRequest } from './TransactionCreatorRequest'
 
 @injectable()
 export default class TransactionCreator {
