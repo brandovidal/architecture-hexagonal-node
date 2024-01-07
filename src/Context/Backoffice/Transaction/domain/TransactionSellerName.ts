@@ -4,12 +4,19 @@ import { StringValueObject } from '../../../Shared/domain/value-object/StringVal
 export class TransactionSellerName extends StringValueObject {
   constructor (value: string) {
     super(value)
-    this.ensureLengthIsMoreThanFourCharacters(value)
+    this.ensureLengthIsMoreThanFiveCharacters(value)
+    this.ensureLengthIsLessThanOneHundredCharacters(value)
   }
 
-  private ensureLengthIsMoreThanFourCharacters (value: string): void {
-    if (value.length < 4) {
-      throw new InvalidArgumentError(`The Transaction seller name <${value}> has less than 4 characters`)
+  private ensureLengthIsMoreThanFiveCharacters (value: string): void {
+    if (value.length < 5) {
+      throw new InvalidArgumentError(`The Transaction seller name <${value}> has less than 5 characters`)
+    }
+  }
+
+  private ensureLengthIsLessThanOneHundredCharacters (value: string): void {
+    if (value.length > 100) {
+      throw new InvalidArgumentError(`The Transaction seller name <${value}> has more than 100 characters`)
     }
   }
 }
