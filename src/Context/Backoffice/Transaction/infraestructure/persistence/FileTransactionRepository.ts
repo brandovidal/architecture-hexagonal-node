@@ -9,7 +9,7 @@ export class FileTransactionRepository implements TransactionRepository {
   private readonly FILE_PATH = path.join(__dirname, '/transactions')
 
   async save (transaction: Transaction) {
-    void fs.promises.writeFile(this.filePath(transaction.id), serialize(transaction))
+    void fs.promises.writeFile(this.filePath(transaction.id.value), serialize(transaction))
   }
 
   private filePath (id: string) {

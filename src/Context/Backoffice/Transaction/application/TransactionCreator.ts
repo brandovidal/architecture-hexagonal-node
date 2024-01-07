@@ -12,7 +12,7 @@ export default class TransactionCreator {
   constructor (@inject('Backoffice.Transaction.domain.TransactionRepository') private readonly repository: TransactionRepository) {}
 
   async run (request: TransactionCreatorRequest): Promise<void> {
-    const id = request.id ? new Uuid(request.id) : Uuid.random()
+    const id = request.id !== undefined ? new Uuid(request.id) : Uuid.random()
     const createdAt = request.created_at ?? new Date()
     const updatedAt = request.updated_at ?? new Date()
 

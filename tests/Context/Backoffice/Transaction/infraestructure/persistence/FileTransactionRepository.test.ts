@@ -1,10 +1,13 @@
 import { Transaction } from 'src/Context/Backoffice/Transaction/domain/Transaction'
 import { FileTransactionRepository } from 'src/Context/Backoffice/Transaction/infraestructure/persistence/FileTransactionRepository'
+import { Uuid } from 'src/Context/Shared/domain/value-object/Uuid'
+
+const id = Uuid.random()
 
 describe('Save Transaction', () => {
   it('should save a transaction', async () => {
     const repository = new FileTransactionRepository()
-    const expectedTransaction = new Transaction('1', 'example.com', 'WALLET', 1, 100, 100, 'PENDING', 'user', 'user')
+    const expectedTransaction = new Transaction(id, 'example.com', 'WALLET', 1, 100, 100, 'PENDING', 'user', 'user')
 
     await repository.save(expectedTransaction)
   })
@@ -12,5 +15,5 @@ describe('Save Transaction', () => {
 
 afterAll(async () => {
   const repository = new FileTransactionRepository()
-  await repository.delete('1')
+  await repository.delete(id.value)
 })

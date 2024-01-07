@@ -17,7 +17,7 @@ describe('TransactionCreator', () => {
   it('should create a valid transaction', async () => {
     const creator = new TransactionCreator(repository)
 
-    const id = new Uuid('95ecc380-afe9-11e4-9b6c-751b66dd541e')
+    const id = '95ecc380-afe9-11e4-9b6c-751b66dd541e'
     const seller_domain = "example.com"
     const kind = "WALLET"
     const invoice_number = 1
@@ -28,9 +28,9 @@ describe('TransactionCreator', () => {
     const user_updated = "admin"
     const created_at = new Date()
     const updated_at = new Date()
-    const expectedTransaction = new Transaction(id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated, created_at, updated_at)
+    const expectedTransaction = new Transaction(new Uuid(id), seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated, created_at, updated_at)
 
-    await creator.run({ id: id.value, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated, created_at, updated_at })
+    await creator.run({ id: id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated, created_at, updated_at })
 
     repository.assertSaveHasBeenCalledWith(expectedTransaction)
   })
