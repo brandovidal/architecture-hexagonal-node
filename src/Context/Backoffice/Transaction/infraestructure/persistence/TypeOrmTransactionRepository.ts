@@ -17,7 +17,6 @@ export class TypeOrmTransactionRepository extends TypeOrmRepository<Transaction>
   }
 
   public save (transaction: Transaction): Promise<void> {
-    console.log('🚀 ~ file: TypeOrmTransactionRepository.ts:20 ~ TypeOrmTransactionRepository ~ save ~ transaction:', transaction)
     return this.persist(transaction)
   }
 

@@ -8,13 +8,13 @@ import { InvalidArgumentError } from './InvalidArgumentError'
 export abstract class DateValueObject {
   value: Date
 
-  constructor (value: Date) {
+  constructor (value?: Date) {
     dayjs.locale(DateValueObject.CURRENT_LOCALE)
     dayjs.extend(utc)
 
-    let initialDate = dayjs(Date.now()).utc().toDate()
+    let initialDate = dayjs(new Date()).utc().toDate()
 
-    if (value !== null || value !== undefined) {
+    if (value !== null && value !== undefined) {
       DateValueObject.ensureDateValueIsValid(value)
       initialDate = dayjs(value).utc().toDate()
     }
@@ -44,7 +44,7 @@ export abstract class DateValueObject {
 
   static ensureDateValueIsValid (value: dayjs.ConfigType) {
     if (!DateValueObject.dateValueIsValid(value)) {
-      throw new InvalidArgumentError(`<EnhancedDate> does not allow the date value <${value?.toString()}>`)
+      throw new InvalidArgumentError(`<DateValueObject> does not allow the date value <${value?.toString()}>`)
     }
   }
 

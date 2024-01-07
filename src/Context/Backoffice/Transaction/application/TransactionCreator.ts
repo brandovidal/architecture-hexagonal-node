@@ -23,9 +23,8 @@ export default class TransactionCreator {
 
   async run (request: TransactionCreatorRequest): Promise<void> {
     const id = request.id !== undefined ? new TransactionId(request.id) : TransactionId.random()
-    const createdAt = request.created_at ?? new Date()
-    console.log('🚀 ~ file: TransactionCreator.ts:27 ~ TransactionCreator ~ run ~ createdAt:', createdAt)
-    const updatedAt = request.updated_at ?? new Date()
+    // const createdAt = request.created_at ?? new Date()
+    // const updatedAt = request.updated_at ?? new Date()
 
     const transaction = new Transaction(
       id,
@@ -37,8 +36,8 @@ export default class TransactionCreator {
       new TransactionStatus(request.status),
       new TransactionUserCreated(request.user_created),
       new TransactionUserUpdated(request.user_updated),
-      new TransactionCreatedAt(createdAt),
-      new TransactionUpdatedAt(updatedAt)
+      new TransactionCreatedAt(request.created_at),
+      new TransactionUpdatedAt(request.updated_at)
     )
     await this.repository.save(transaction)
   }
