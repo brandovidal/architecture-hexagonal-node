@@ -1,14 +1,11 @@
-import type { Uuid } from '../../../Shared/domain/value-object/Uuid'
-import type { ObjectId } from '../../../Shared/domain/value-object/ObjectId'
-
-import type { TransactionId } from './TransactionId'
-import type { TransactionSellerName } from './TransactionSellerName'
+import { type Uuid } from '../../../../Context/Shared/domain/value-object/Uuid'
+import { type ObjectId } from '../../../Shared/domain/value-object/ObjectId'
 
 export class Transaction {
   _id!: ObjectId
-  id!: TransactionId
+  id!: Uuid
 
-  sellerDomain!: TransactionSellerName
+  sellerDomain!: string
   kind!: string
 
   invoiceNumber: number
@@ -24,31 +21,19 @@ export class Transaction {
   createdAt?: Date
   updatedAt?: Date
 
-  constructor ({
-    id,
-    sellerDomain,
-    kind,
-    invoiceNumber,
-    amount,
-    total,
-    status,
-    userCreated,
-    userUpdated,
-    createdAt,
-    updatedAt
-  }: {
-    id: TransactionId
-    sellerDomain: TransactionSellerName
-    kind: string
-    invoiceNumber: number
-    amount: number
-    total: number
-    status: string
-    userCreated?: string
-    userUpdated?: string
-    createdAt?: Date
+  constructor (
+    id: Uuid,
+    sellerDomain: string,
+    kind: string,
+    invoiceNumber: number,
+    amount: number,
+    total: number,
+    status: string,
+    userCreated?: string,
+    userUpdated?: string,
+    createdAt?: Date,
     updatedAt?: Date
-  }) {
+  ) {
     this.id = id
     this.sellerDomain = sellerDomain
     this.kind = kind
@@ -62,38 +47,38 @@ export class Transaction {
     this.updatedAt = updatedAt
   }
 
-  static fromPrimitives (plainData: {
-    id: TransactionId
-    seller_domain: TransactionSellerName
-    kind: string
-    invoice_number: number
-    amount: number
-    total: number
-    status: string
-    user_created?: string
-    user_updated?: string
-    created_at?: Date
-    updated_at?: Date
-  }): Transaction {
-    return new Transaction({
-      id: plainData.id,
-      sellerDomain: plainData.seller_domain,
-      kind: plainData.kind,
-      invoiceNumber: plainData.invoice_number,
-      amount: plainData.amount,
-      total: plainData.total,
-      status: plainData.status,
-      userCreated: plainData.user_created,
-      userUpdated: plainData.user_updated,
-      createdAt: plainData.created_at,
-      updatedAt: plainData.updated_at
-    })
-  }
+  // static fromPrimitives (plainData: {
+  //   id: Uuid
+  //   seller_domain: string
+  //   kind: string
+  //   invoice_number: number
+  //   amount: number
+  //   total: number
+  //   status: string
+  //   user_created?: string
+  //   user_updated?: string
+  //   created_at?: Date
+  //   updated_at?: Date
+  // }): Transaction {
+  //   return new Transaction(
+  //     plainData?.id,
+  //     plainData.seller_domain,
+  //     plainData.kind,
+  //     plainData.invoice_number,
+  //     plainData.amount,
+  //     plainData.total,
+  //     plainData.status,
+  //     plainData.user_created,
+  //     plainData.user_updated,
+  //     plainData.created_at,
+  //     plainData.updated_at
+  //   )
+  // }
 
   toPrimitives () {
     return {
       id: this.id.value,
-      seller_domain: this.sellerDomain.value,
+      seller_domain: this.sellerDomain,
       kind: this.kind,
       invoice_number: this.invoiceNumber,
       amount: this.amount,
