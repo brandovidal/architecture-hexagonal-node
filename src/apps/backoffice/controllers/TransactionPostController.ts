@@ -4,7 +4,9 @@ import httpStatus from 'http-status'
 import { inject, injectable } from 'inversify'
 
 import type { Controller } from './Controller'
+
 import TransactionCreator from '../../../Context/Backoffice/Transaction/application/TransactionCreator'
+import { InvalidArgumentError } from '../../../Context/Shared/domain/value-object/InvalidArgumentError'
 
 interface TransactionPostRequest extends Request {
   body: {
@@ -38,13 +40,20 @@ export default class TransactionPostController implements Controller {
         data: req.body
       })
     } catch (error: unknown) {
-      console.error('Error trying to create transaction', error)
+      if (error instanceof InvalidArgumentError) {
+        res.status(httpStatus.BAD_REQUEST).send({
+          success: false,
+          error: {
+            message: error.message
+          }
+        })
+        return
+      }
 
       res.status(httpStatus.INTERNAL_SERVER_ERROR).send({
         success: false,
         error: {
-          message: 'Error trying to create transaction',
-          details: error
+          message: 'Error trying to create transaction'
         }
       })
     }
