@@ -1,0 +1,22 @@
+import { StringValueObject } from '../../../Shared/domain/value-object/StringValueObject'
+import { InvalidArgumentError } from '../../../Shared/domain/value-object/InvalidArgumentError'
+
+export type TransactionStatusValue = 'PENDING' | 'SUCCESS' | 'FAILED'
+export enum TransactionStatusType {
+  PENDING = 'PENDING',
+  SUCCESS = 'SUCCESS',
+  FAILED = 'FAILED'
+}
+
+export class TransactionStatus extends StringValueObject {
+  constructor (value: string) {
+    super(value)
+    this.ensureIsValidStatus(value)
+  }
+
+  private ensureIsValidStatus (value: string): void {
+    if (TransactionStatusType[value as TransactionStatusValue] === undefined) {
+      throw new InvalidArgumentError(`The transaction status ${value} is not valid`)
+    }
+  }
+}

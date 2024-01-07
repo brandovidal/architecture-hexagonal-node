@@ -4,7 +4,7 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "lib": ["esnext", "dom"],	
+    "lib": ["esnext", "dom"],
     "types": ["reflect-metadata", "node", "vitest/globals"],
     "sourceMap": false,
     "outDir": "dist",

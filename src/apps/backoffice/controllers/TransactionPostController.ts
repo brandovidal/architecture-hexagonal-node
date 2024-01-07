@@ -4,7 +4,9 @@ import httpStatus from 'http-status'
 import { inject, injectable } from 'inversify'
 
 import type { Controller } from './Controller'
+
 import TransactionCreator from '../../../Context/Backoffice/Transaction/application/TransactionCreator'
+import { InvalidArgumentError } from '../../../Context/Shared/domain/value-object/InvalidArgumentError'
 
 interface TransactionPostRequest extends Request {
   body: {
@@ -16,7 +18,9 @@ interface TransactionPostRequest extends Request {
     total: number
     status: string
     user_created: string
-    user_updated: string
+    user_updated: string,
+    created_at?: Date
+    updated_at?: Date
   }
 }
 
@@ -26,9 +30,9 @@ export default class TransactionPostController implements Controller {
 
   async run (req: TransactionPostRequest, res: Response): Promise<void> {
     try {
-      const { id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated } = req.body
+      const { id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated, created_at, updated_at } = req.body
 
-      await this.creator.run({ id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated })
+      await this.creator.run({ id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated, created_at, updated_at })
 
       res.status(httpStatus.CREATED).send({
         success: true,
@@ -36,13 +40,20 @@ export default class TransactionPostController implements Controller {
         data: req.body
       })
     } catch (error: unknown) {
-      console.error('Error trying to create transaction', error)
+      if (error instanceof InvalidArgumentError) {
+        res.status(httpStatus.BAD_REQUEST).send({
+          success: false,
+          error: {
+            message: error.message
+          }
+        })
+        return
+      }
 
       res.status(httpStatus.INTERNAL_SERVER_ERROR).send({
         success: false,
         error: {
-          message: 'Error trying to create transaction',
-          details: error
+          message: 'Error trying to create transaction'
         }
       })
     }

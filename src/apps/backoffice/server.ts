@@ -36,7 +36,7 @@ export class Server {
     const router: Router = Router()
     this.express.use('/v1', router)
 
-    registerRoutes(router)
+    void registerRoutes(router)
 
     this.express.use('/', (req: Request, res: Response) => {
       console.error(` Route ${req.url} not found \n`)

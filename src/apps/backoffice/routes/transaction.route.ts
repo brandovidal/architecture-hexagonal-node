@@ -9,7 +9,7 @@ import TransactionDeleteController from '../controllers/TransactionDeleteControl
 
 import validationRequestSchema from '../middlewares/validationRequestSchema'
 
-import { createTransactionSchema } from '../schemas/transactionSchema'
+import createTransactionSchema from '../../../Context/Backoffice/Transaction/domain/schemas/createTransactionSchema'
 
 function register (router: Router) {
   const transactionGetController = container.resolve(TransactionsGetController)

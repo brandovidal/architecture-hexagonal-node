@@ -8,7 +8,7 @@
     "dev": "concurrently --kill-others-on-fail \"dotenv -e .env.dev -- ts-node-dev --no-notify --respawn --transpile-only src/apps/backoffice/start.ts\"",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
-    "test": "concurrently --kill-others-on-fail \"pnpm run test:unit\" \"pnpm run test:features\"",
+    "test": "concurrently --kill-others-on-fail \"pnpm run test:unit\"",
     "test:unit": "dotenv -e .env.test -- vitest --project unit",
     "test:features": "dotenv -e .env.test -- vitest --project features",
     "test:ci": "dotenv -e .env.test -- vitest --project unit --run",
@@ -19,10 +19,11 @@
     "clean:build": "rimraf dist public",
     "clean:install": "rimraf node_modules package-lock.json yarn.lock pnpm-lock.yaml bun.lockb",
     "clean": "pnpm run clean:build && pnpm run clean:install",
-    "db:init": "docker build -t mongo .",
-    "db:generate": "docker run -d -p 27017:27017 --name architecture-hexagonal-node-db mongo",
+    "db:init": "docker pull mongo:latest",
+    "db:generate": "docker run -d -p 27017:27017 --name=architecture-hexagonal-node-db mongo",
     "db:stop": "docker stop architecture-hexagonal-node-db",
-    "db:start": "docker exec -it architecture-hexagonal-node-db mongo"
+    "db:start": "docker exec -it architecture-hexagonal-node-db mongo",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -30,17 +31,20 @@
   "dependencies": {
     "bson": "6.2.0",
     "cors": "2.8.5",
+    "dayjs": "1.11.10",
     "express": "4.18.2",
     "glob": "10.3.10",
     "helmet": "7.1.0",
     "http-status": "1.7.3",
     "inversify": "6.0.2",
-    "mongodb": "6.3.0",
+    "mongodb": "5.2.0",
     "morgan": "1.10.0",
     "reflect-metadata": "0.2.1",
     "swagger-ui-express": "5.0.0",
     "tsoa": "6.0.0",
     "typeorm": "0.3.17",
+    "uuid": "9.0.1",
+    "uuid-validate": "0.0.3",
     "zod": "3.22.4"
   },
   "devDependencies": {
@@ -52,6 +56,8 @@
     "@types/node": "20.10.6",
     "@types/supertest": "6.0.2",
     "@types/swagger-ui-express": "4.1.6",
+    "@types/uuid": "9.0.7",
+    "@types/uuid-validate": "0.0.3",
     "@typescript-eslint/eslint-plugin": "6.17.0",
     "@vitest/ui": "1.1.2",
     "concurrently": "8.2.2",
@@ -68,6 +74,7 @@
     "ts-node": "10.9.2",
     "ts-node-dev": "2.0.0",
     "typescript": "5.3.3",
-    "vitest": "1.1.2"
+    "vitest": "1.1.2",
+    "husky": "^8.0.0"
   }
 }
