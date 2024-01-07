@@ -7,10 +7,10 @@ import { type TransactionSellerDomain } from './TransactionSellerDomain'
 import { type TransactionStatus } from './TransactionStatus'
 import { type TransactionAmount } from './TransactionAmount'
 import { type TransactionTotal } from './TransactionTotal'
-import { type TransactionCreatedAt } from './TransactionCreatedAt'
-import { type TransactionUpdatedAt } from './TransactionUpdatedAt'
 import { type TransactionUserCreated } from './TransactionUserCreated'
 import { type TransactionUserUpdated } from './TransactionUserUpdated'
+import { type TransactionCreatedAt } from './TransactionCreatedAt'
+import { type TransactionUpdatedAt } from './TransactionUpdatedAt'
 
 export class Transaction {
   _id!: ObjectId
