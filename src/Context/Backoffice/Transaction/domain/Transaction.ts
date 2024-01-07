@@ -1,39 +1,49 @@
 import { type ObjectId } from '../../../Shared/domain/value-object/ObjectId'
 
-import type { TransactionId } from './TransactionId'
+import { type TransactionId } from './TransactionId'
+import { type TransactionInvoiceNumber } from './TransactionInvoiceNumber'
+import { type TransactionKind } from './TransactionKind'
+import { type TransactionSellerName } from './TransactionSellerName'
+import { type TransactionStatus } from './TransactionStatus'
+import { type TransactionAmount } from './TransactionAmount'
+import { type TransactionTotal } from './TransactionTotal'
+import { type TransactionCreatedAt } from './TransactionCreatedAt'
+import { type TransactionUpdatedAt } from './TransactionUpdatedAt'
+import { type TransactionUserCreated } from './TransactionUserCreated'
+import { type TransactionUserUpdated } from './TransactionUserUpdated'
 
 export class Transaction {
   _id!: ObjectId
   id!: TransactionId
 
-  sellerDomain!: string
-  kind!: string
+  sellerDomain!: TransactionSellerName
+  kind!: TransactionKind
 
-  invoiceNumber: number
+  invoiceNumber: TransactionInvoiceNumber
 
-  amount: number
-  total: number
+  amount: TransactionAmount
+  total: TransactionTotal
 
-  status: string
+  status: TransactionStatus
 
-  userCreated?: string
-  userUpdated?: string
+  userCreated?: TransactionUserCreated
+  userUpdated?: TransactionUserUpdated
 
-  createdAt?: Date
-  updatedAt?: Date
+  createdAt?: TransactionCreatedAt
+  updatedAt?: TransactionUpdatedAt
 
   constructor (
     id: TransactionId,
-    sellerDomain: string,
-    kind: string,
-    invoiceNumber: number,
-    amount: number,
-    total: number,
-    status: string,
-    userCreated?: string,
-    userUpdated?: string,
-    createdAt?: Date,
-    updatedAt?: Date
+    sellerDomain: TransactionSellerName,
+    kind: TransactionKind,
+    invoiceNumber: TransactionInvoiceNumber,
+    amount: TransactionAmount,
+    total: TransactionTotal,
+    status: TransactionStatus,
+    userCreated?: TransactionUserCreated,
+    userUpdated?: TransactionUserUpdated,
+    createdAt?: TransactionCreatedAt,
+    updatedAt?: TransactionUpdatedAt
   ) {
     this.id = id
     this.sellerDomain = sellerDomain
@@ -51,16 +61,16 @@ export class Transaction {
   toPrimitives () {
     return {
       id: this.id.value,
-      seller_domain: this.sellerDomain,
-      kind: this.kind,
-      invoice_number: this.invoiceNumber,
-      amount: this.amount,
-      total: this.total,
-      status: this.status,
-      user_created: this.userCreated,
-      user_updated: this.userUpdated,
-      created_at: this.createdAt,
-      updated_at: this.updatedAt
+      seller_domain: this.sellerDomain.value,
+      kind: this.kind.value,
+      invoice_number: this.invoiceNumber.value,
+      amount: this.amount.value,
+      total: this.total.value,
+      status: this.status.value,
+      user_created: this.userCreated?.value,
+      user_updated: this.userUpdated?.value,
+      created_at: this.createdAt?.value,
+      updated_at: this.updatedAt?.value
     }
   }
 }

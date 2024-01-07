@@ -6,6 +6,16 @@ import { TransactionRepository } from '../domain/TransactionRepository'
 import type { TransactionCreatorRequest } from './TransactionCreatorRequest'
 
 import { TransactionId } from '../domain/TransactionId'
+import { TransactionSellerName } from '../domain/TransactionSellerName'
+import { TransactionKind } from '../domain/TransactionKind'
+import { TransactionInvoiceNumber } from '../domain/TransactionInvoiceNumber'
+import { TransactionAmount } from '../domain/TransactionAmount'
+import { TransactionTotal } from '../domain/TransactionTotal'
+import { TransactionStatus } from '../domain/TransactionStatus'
+import { TransactionUserCreated } from '../domain/TransactionUserCreated'
+import { TransactionUserUpdated } from '../domain/TransactionUserUpdated'
+import { TransactionCreatedAt } from '../domain/TransactionCreatedAt'
+import { TransactionUpdatedAt } from '../domain/TransactionUpdatedAt'
 
 @injectable()
 export default class TransactionCreator {
@@ -14,20 +24,21 @@ export default class TransactionCreator {
   async run (request: TransactionCreatorRequest): Promise<void> {
     const id = request.id !== undefined ? new TransactionId(request.id) : TransactionId.random()
     const createdAt = request.created_at ?? new Date()
+    console.log('🚀 ~ file: TransactionCreator.ts:27 ~ TransactionCreator ~ run ~ createdAt:', createdAt)
     const updatedAt = request.updated_at ?? new Date()
 
     const transaction = new Transaction(
       id,
-      request.seller_domain,
-      request.kind,
-      request.invoice_number,
-      request.amount,
-      request.total,
-      request.status,
-      request.user_created,
-      request.user_updated,
-      createdAt,
-      updatedAt
+      new TransactionSellerName(request.seller_domain),
+      new TransactionKind(request.kind),
+      new TransactionInvoiceNumber(request.invoice_number),
+      new TransactionAmount(request.amount),
+      new TransactionTotal(request.total),
+      new TransactionStatus(request.status),
+      new TransactionUserCreated(request.user_created),
+      new TransactionUserUpdated(request.user_updated),
+      new TransactionCreatedAt(createdAt),
+      new TransactionUpdatedAt(updatedAt)
     )
     await this.repository.save(transaction)
   }

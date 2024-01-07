@@ -16,7 +16,9 @@ interface TransactionPostRequest extends Request {
     total: number
     status: string
     user_created: string
-    user_updated: string
+    user_updated: string,
+    created_at?: Date
+    updated_at?: Date
   }
 }
 
@@ -26,9 +28,9 @@ export default class TransactionPostController implements Controller {
 
   async run (req: TransactionPostRequest, res: Response): Promise<void> {
     try {
-      const { id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated } = req.body
+      const { id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated, created_at, updated_at } = req.body
 
-      await this.creator.run({ id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated })
+      await this.creator.run({ id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated, created_at, updated_at })
 
       res.status(httpStatus.CREATED).send({
         success: true,
