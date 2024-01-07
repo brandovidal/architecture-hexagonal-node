@@ -12,7 +12,7 @@ export abstract class DateValueObject {
     dayjs.locale(DateValueObject.CURRENT_LOCALE)
     dayjs.extend(utc)
 
-    let initialDate = dayjs(new Date()).utc().toDate()
+    let initialDate = dayjs(Date.now()).utc().toDate()
 
     if (value !== null && value !== undefined) {
       DateValueObject.ensureDateValueIsValid(value)
