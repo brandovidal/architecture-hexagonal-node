@@ -1,9 +1,10 @@
-import { type Uuid } from '../../../../Context/Shared/domain/value-object/Uuid'
 import { type ObjectId } from '../../../Shared/domain/value-object/ObjectId'
+
+import type { TransactionId } from './TransactionId'
 
 export class Transaction {
   _id!: ObjectId
-  id!: Uuid
+  id!: TransactionId
 
   sellerDomain!: string
   kind!: string
@@ -22,7 +23,7 @@ export class Transaction {
   updatedAt?: Date
 
   constructor (
-    id: Uuid,
+    id: TransactionId,
     sellerDomain: string,
     kind: string,
     invoiceNumber: number,

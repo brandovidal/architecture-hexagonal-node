@@ -1,8 +1,8 @@
-import { serialize, deserialize } from 'bson'
+import { serialize } from 'bson'
 import fs from 'fs'
 import path from 'path'
 
-import { Transaction } from '../../domain/Transaction'
+import type { Transaction } from '../../domain/Transaction'
 import type { TransactionRepository } from '../../domain/TransactionRepository'
 
 export class FileTransactionRepository implements TransactionRepository {
@@ -14,12 +14,6 @@ export class FileTransactionRepository implements TransactionRepository {
 
   private filePath (id: string) {
     return `${this.FILE_PATH}.${id}.repo`
-  }
-
-  async search (transactionId: string): Promise<Transaction> {
-    const courseData = await fs.promises.readFile(this.filePath(transactionId))
-    const { id, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, createdAt, updatedAt } = deserialize(courseData)
-    return new Transaction({ id, sellerDomain, kind, invoiceNumber, amount, total, status, userCreated, userUpdated, createdAt, updatedAt })
   }
 
   async delete (id: string) {

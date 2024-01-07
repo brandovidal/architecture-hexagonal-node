@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { type NewableClass } from '../../../domain/NewableClass'
 import { type ValueObject } from '../../../domain/value-object/ValueObject'
 

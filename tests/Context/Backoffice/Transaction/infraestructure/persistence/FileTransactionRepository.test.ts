@@ -1,8 +1,8 @@
 import { Transaction } from 'src/Context/Backoffice/Transaction/domain/Transaction'
+import { TransactionId } from 'src/Context/Backoffice/Transaction/domain/TransactionId'
 import { FileTransactionRepository } from 'src/Context/Backoffice/Transaction/infraestructure/persistence/FileTransactionRepository'
-import { Uuid } from 'src/Context/Shared/domain/value-object/Uuid'
 
-const id = Uuid.random()
+const id = TransactionId.random()
 
 describe('Save Transaction', () => {
   it('should save a transaction', async () => {
