@@ -7,7 +7,7 @@ const STATUS_OPTIONS = ['PENDING', 'SUCCESS', 'FAILED'] as const
 // TODO: export this
 const DATE_REGEX = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/
 
-export const createTransactionSchema = object({
+const createTransactionSchema = object({
   body: object({
     seller_domain: string({ required_error: 'seller_domain is required', invalid_type_error: 'seller_domain must be a string' })
       .min(5, 'seller_domain must be at least 5 characters long')
@@ -33,3 +33,5 @@ export const createTransactionSchema = object({
       .nullish()
   })
 })
+
+export default createTransactionSchema
