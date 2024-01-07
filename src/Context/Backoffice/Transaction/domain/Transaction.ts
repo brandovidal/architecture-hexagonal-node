@@ -48,34 +48,6 @@ export class Transaction {
     this.updatedAt = updatedAt
   }
 
-  // static fromPrimitives (plainData: {
-  //   id: Uuid
-  //   seller_domain: string
-  //   kind: string
-  //   invoice_number: number
-  //   amount: number
-  //   total: number
-  //   status: string
-  //   user_created?: string
-  //   user_updated?: string
-  //   created_at?: Date
-  //   updated_at?: Date
-  // }): Transaction {
-  //   return new Transaction(
-  //     plainData?.id,
-  //     plainData.seller_domain,
-  //     plainData.kind,
-  //     plainData.invoice_number,
-  //     plainData.amount,
-  //     plainData.total,
-  //     plainData.status,
-  //     plainData.user_created,
-  //     plainData.user_updated,
-  //     plainData.created_at,
-  //     plainData.updated_at
-  //   )
-  // }
-
   toPrimitives () {
     return {
       id: this.id.value,
