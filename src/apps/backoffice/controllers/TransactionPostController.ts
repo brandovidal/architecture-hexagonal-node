@@ -27,7 +27,6 @@ export default class TransactionPostController implements Controller {
   async run (req: TransactionPostRequest, res: Response): Promise<void> {
     try {
       const { id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated } = req.body
-      console.log('🚀 ~ file: TransactionPostController.ts:30 ~ TransactionPostController ~ run ~ id:', id)
 
       await this.creator.run({ id, seller_domain, kind, invoice_number, amount, total, status, user_created, user_updated })
 
