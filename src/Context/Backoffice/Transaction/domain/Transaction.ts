@@ -3,7 +3,7 @@ import { type ObjectId } from '../../../Shared/domain/value-object/ObjectId'
 import { type TransactionId } from './TransactionId'
 import { type TransactionInvoiceNumber } from './TransactionInvoiceNumber'
 import { type TransactionKind } from './TransactionKind'
-import { type TransactionSellerName } from './TransactionSellerName'
+import { type TransactionSellerDomain } from './TransactionSellerDomain'
 import { type TransactionStatus } from './TransactionStatus'
 import { type TransactionAmount } from './TransactionAmount'
 import { type TransactionTotal } from './TransactionTotal'
@@ -16,7 +16,7 @@ export class Transaction {
   _id!: ObjectId
   id!: TransactionId
 
-  sellerDomain!: TransactionSellerName
+  sellerDomain!: TransactionSellerDomain
   kind!: TransactionKind
 
   invoiceNumber: TransactionInvoiceNumber
@@ -34,7 +34,7 @@ export class Transaction {
 
   constructor (
     id: TransactionId,
-    sellerDomain: TransactionSellerName,
+    sellerDomain: TransactionSellerDomain,
     kind: TransactionKind,
     invoiceNumber: TransactionInvoiceNumber,
     amount: TransactionAmount,

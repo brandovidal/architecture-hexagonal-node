@@ -4,7 +4,7 @@ import { ValueObjectTransformer } from '../../../../../Shared/infraestructure/pe
 
 import { Transaction } from '../../../domain/Transaction'
 import { TransactionId } from '../../../domain/TransactionId'
-import { TransactionSellerName } from '../../../domain/TransactionSellerName'
+import { TransactionSellerDomain } from '../../../domain/TransactionSellerDomain'
 import { TransactionKind } from '../../../domain/TransactionKind'
 import { TransactionInvoiceNumber } from '../../../domain/TransactionInvoiceNumber'
 import { TransactionAmount } from '../../../domain/TransactionAmount'
@@ -33,7 +33,7 @@ export const TransactionEntity = new EntitySchema<Transaction>({
     sellerDomain: {
       name: 'seller_domain',
       type: String,
-      transformer: ValueObjectTransformer(TransactionSellerName)
+      transformer: ValueObjectTransformer(TransactionSellerDomain)
     },
     kind: {
       type: String,

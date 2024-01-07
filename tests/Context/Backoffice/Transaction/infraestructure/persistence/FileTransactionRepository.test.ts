@@ -3,7 +3,7 @@ import { FileTransactionRepository } from 'src/Context/Backoffice/Transaction/in
 import { Transaction } from 'src/Context/Backoffice/Transaction/domain/Transaction'
 
 import { TransactionId } from 'src/Context/Backoffice/Transaction/domain/TransactionId'
-import { TransactionSellerName } from 'src/Context/Backoffice/Transaction/domain/TransactionSellerName'
+import { TransactionSellerDomain } from 'src/Context/Backoffice/Transaction/domain/TransactionSellerDomain'
 import { TransactionKind } from 'src/Context/Backoffice/Transaction/domain/TransactionKind'
 import { TransactionInvoiceNumber } from 'src/Context/Backoffice/Transaction/domain/TransactionInvoiceNumber'
 import { TransactionAmount } from 'src/Context/Backoffice/Transaction/domain/TransactionAmount'
@@ -19,7 +19,7 @@ describe('Save Transaction', () => {
     const repository = new FileTransactionRepository()
     const expectedTransaction = new Transaction(
       id,
-      new TransactionSellerName('example.com'),
+      new TransactionSellerDomain('example.com'),
       new TransactionKind('WALLET'),
       new TransactionInvoiceNumber(1),
       new TransactionAmount(100),

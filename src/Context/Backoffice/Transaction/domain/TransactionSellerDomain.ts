@@ -1,7 +1,7 @@
 import { InvalidArgumentError } from '../../../Shared/domain/value-object/InvalidArgumentError'
 import { StringValueObject } from '../../../Shared/domain/value-object/StringValueObject'
 
-export class TransactionSellerName extends StringValueObject {
+export class TransactionSellerDomain extends StringValueObject {
   constructor (value: string) {
     super(value)
     this.ensureLengthIsMoreThanFiveCharacters(value)

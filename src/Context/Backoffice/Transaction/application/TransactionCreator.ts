@@ -6,7 +6,7 @@ import { TransactionRepository } from '../domain/TransactionRepository'
 import type { TransactionCreatorRequest } from './TransactionCreatorRequest'
 
 import { TransactionId } from '../domain/TransactionId'
-import { TransactionSellerName } from '../domain/TransactionSellerName'
+import { TransactionSellerDomain } from '../domain/TransactionSellerDomain'
 import { TransactionKind } from '../domain/TransactionKind'
 import { TransactionInvoiceNumber } from '../domain/TransactionInvoiceNumber'
 import { TransactionAmount } from '../domain/TransactionAmount'
@@ -26,7 +26,7 @@ export default class TransactionCreator {
 
     const transaction = new Transaction(
       id,
-      new TransactionSellerName(request.seller_domain),
+      new TransactionSellerDomain(request.seller_domain),
       new TransactionKind(request.kind),
       new TransactionInvoiceNumber(request.invoice_number),
       new TransactionAmount(request.amount),

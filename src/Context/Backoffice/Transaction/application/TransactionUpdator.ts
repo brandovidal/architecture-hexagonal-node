@@ -4,7 +4,7 @@ import { Transaction } from '../domain/Transaction'
 import { TransactionRepository } from '../domain/TransactionRepository'
 
 import { TransactionId } from '../domain/TransactionId'
-import { TransactionSellerName } from '../domain/TransactionSellerName'
+import { TransactionSellerDomain } from '../domain/TransactionSellerDomain'
 import { TransactionKind } from '../domain/TransactionKind'
 import { TransactionInvoiceNumber } from '../domain/TransactionInvoiceNumber'
 import { TransactionAmount } from '../domain/TransactionAmount'
@@ -21,7 +21,7 @@ export default class TransactionUpdator {
   async run (id: string, seller_domain: string, kind: string, invoice_number: number, amount: number, total: number, status: string, user_created: string, user_updated: string) {
     const transaction = new Transaction(
       new TransactionId(id),
-      new TransactionSellerName(seller_domain),
+      new TransactionSellerDomain(seller_domain),
       new TransactionKind(kind),
       new TransactionInvoiceNumber(invoice_number),
       new TransactionAmount(amount),

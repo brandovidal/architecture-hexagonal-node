@@ -7,7 +7,7 @@ import { TransactionRepositoryMock } from '../__mocks__/CourseRepositoryMock'
 import TransactionCreator from 'src/Context/Backoffice/Transaction/application/TransactionCreator'
 
 import { TransactionId } from 'src/Context/Backoffice/Transaction/domain/TransactionId'
-import { TransactionSellerName } from 'src/Context/Backoffice/Transaction/domain/TransactionSellerName'
+import { TransactionSellerDomain } from 'src/Context/Backoffice/Transaction/domain/TransactionSellerDomain'
 import { TransactionKind } from 'src/Context/Backoffice/Transaction/domain/TransactionKind'
 import { TransactionInvoiceNumber } from 'src/Context/Backoffice/Transaction/domain/TransactionInvoiceNumber'
 import { TransactionAmount } from 'src/Context/Backoffice/Transaction/domain/TransactionAmount'
@@ -42,7 +42,7 @@ describe('TransactionCreator', () => {
 
     const expectedTransaction = new Transaction(
       new TransactionId(id),
-      new TransactionSellerName(seller_domain),
+      new TransactionSellerDomain(seller_domain),
       new TransactionKind(kind),
       new TransactionInvoiceNumber(invoice_number),
       new TransactionAmount(amount),
