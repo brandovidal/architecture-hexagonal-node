@@ -23,8 +23,6 @@ export default class TransactionCreator {
 
   async run (request: TransactionCreatorRequest): Promise<void> {
     const id = request.id !== undefined ? new TransactionId(request.id) : TransactionId.random()
-    // const createdAt = request.created_at ?? new Date()
-    // const updatedAt = request.updated_at ?? new Date()
 
     const transaction = new Transaction(
       id,
