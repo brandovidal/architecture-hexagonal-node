@@ -22,7 +22,8 @@
     "db:init": "docker pull mongo:latest",
     "db:generate": "docker run -d -p 27017:27017 --name=architecture-hexagonal-node-db mongo",
     "db:stop": "docker stop architecture-hexagonal-node-db",
-    "db:start": "docker exec -it architecture-hexagonal-node-db mongo"
+    "db:start": "docker exec -it architecture-hexagonal-node-db mongo",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -73,6 +74,7 @@
     "ts-node": "10.9.2",
     "ts-node-dev": "2.0.0",
     "typescript": "5.3.3",
-    "vitest": "1.1.2"
+    "vitest": "1.1.2",
+    "husky": "^8.0.0"
   }
 }
