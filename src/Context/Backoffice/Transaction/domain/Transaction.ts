@@ -21,7 +21,7 @@ export class Transaction {
 
   invoiceNumber: TransactionInvoiceNumber
 
-  amount: TransactionAmount
+  amount!: TransactionAmount
   total: TransactionTotal
 
   status: TransactionStatus
