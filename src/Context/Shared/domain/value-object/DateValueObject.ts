@@ -8,6 +8,8 @@ import { InvalidArgumentError } from './InvalidArgumentError'
 export abstract class DateValueObject {
   value: Date
 
+  static readonly REGEX = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/
+
   constructor (value?: Date) {
     dayjs.locale(DateValueObject.CURRENT_LOCALE)
     dayjs.extend(utc)
