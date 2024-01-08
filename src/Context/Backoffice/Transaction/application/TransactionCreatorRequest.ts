@@ -6,8 +6,8 @@ export interface TransactionCreatorRequest {
   amount: number
   total: number
   status: string
-  user_created: string
-  user_updated: string
+  user_created?: string
+  user_updated?: string
   created_at?: Date
   updated_at?: Date
 }
