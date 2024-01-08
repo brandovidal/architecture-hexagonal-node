@@ -4,8 +4,8 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "lib": ["esnext", "dom"],	
-    "types": ["reflect-metadata", "node"],
+    "lib": ["esnext", "dom"],
+    "types": ["reflect-metadata", "node", "vitest/globals"],
     "sourceMap": false,
     "outDir": "dist",
     "declaration": false,
@@ -43,6 +43,6 @@
     "resolveJsonModule": true,
     "skipLibCheck": true
   },
-  "include": ["src", "tests", "seed"],
-  "exclude": ["node_modules/"]
+  "include": ["src", "tests"],
+  "exclude": ["node_modules/", "dist/"]
 }

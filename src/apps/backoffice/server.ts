@@ -1,3 +1,4 @@
+import type { Request, Response } from 'express'
 import express, { Router, json, urlencoded } from 'express'
 
 import helmet from 'helmet'
@@ -7,11 +8,12 @@ import cors from 'cors'
 import morgan from 'morgan'
 
 import { registerRoutes } from './routes'
+import httpStatus from 'http-status'
 
 export class Server {
   private readonly express: express.Express
   private readonly port: string
-  private httpServer?: http.Server
+  private httpServer!: http.Server
 
   constructor (port: string) {
     this.port = port
@@ -34,7 +36,16 @@ export class Server {
     const router: Router = Router()
     this.express.use('/v1', router)
 
-    registerRoutes(router)
+    void registerRoutes(router)
+
+    this.express.use('/', (req: Request, res: Response) => {
+      console.error(` Route ${req.url} not found \n`)
+
+      res.status(httpStatus.NOT_FOUND).send({
+        success: false,
+        message: 'Not found'
+      })
+    })
   }
 
   async listen (): Promise<void> {
@@ -42,6 +53,7 @@ export class Server {
       this.httpServer = this.express.listen(this.port, () => {
         console.log(`  Node Backend App is running at http://localhost:${this.port} in ${this.express.get('env')} mode`)
         console.log('  Press CTRL-C to stop\n')
+
         resolve(1)
       })
     })
@@ -57,9 +69,7 @@ export class Server {
         this.httpServer.close(error => {
           if (error !== null) {
             reject(error)
-            return
           }
-          resolve(1)
         })
       }
 
