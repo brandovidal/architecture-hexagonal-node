@@ -5,7 +5,6 @@ import TransactionCreator from 'src/Context/Backoffice/Transaction/application/T
 
 import { CreateTransactionRequestMother } from './CreateTransactionRequestMother'
 import { TransactionMother } from '../domain/TransactionMother'
-import { TransactionKindInvalid } from 'src/Context/Backoffice/Transaction/domain/TransactionKindInvalid'
 
 let repository: TransactionRepositoryMock
 let creator: TransactionCreator
