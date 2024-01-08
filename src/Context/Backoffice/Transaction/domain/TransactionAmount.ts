@@ -1,4 +1,5 @@
 import { NumberValueObject } from '../../../Shared/domain/value-object/NumberValueObject'
+import { TransactionAmountZero } from './TransactionAmountZero'
 
 export class TransactionAmount extends NumberValueObject {
   constructor (value: number) {
@@ -8,7 +9,7 @@ export class TransactionAmount extends NumberValueObject {
 
   private ensureIsMoreThanZero (value: number): void {
     if (value < 0) {
-      throw new Error('The transaction amount must be more than zero')
+      throw new TransactionAmountZero('The transaction amount must be more than zero')
     }
   }
 }
