@@ -68,7 +68,7 @@ export class Transaction {
       invoice_number: this.invoiceNumber.value,
       amount: this.amount.value,
       total: this.total.value,
-      status: this.status.map(status => status.value),
+      status: this.status.toPrimitive()?.value,
       user_created: this.userCreated?.value,
       user_updated: this.userUpdated?.value,
       created_at: this.createdAt?.value,

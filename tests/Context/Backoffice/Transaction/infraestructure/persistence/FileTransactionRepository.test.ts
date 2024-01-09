@@ -12,6 +12,8 @@ import { TransactionStatus } from 'src/Context/Backoffice/Transaction/domain/Tra
 import { TransactionUserCreated } from 'src/Context/Backoffice/Transaction/domain/TransactionUserCreated'
 import { TransactionUserUpdated } from 'src/Context/Backoffice/Transaction/domain/TransactionUserUpdated'
 
+import { Maybe } from 'src/Context/Shared/domain/Maybe'
+
 const id = TransactionId.random()
 
 describe('Save Transaction', () => {
@@ -24,7 +26,7 @@ describe('Save Transaction', () => {
       new TransactionInvoiceNumber(1),
       new TransactionAmount(100),
       new TransactionTotal(100),
-      new TransactionStatus('PENDING'),
+      Maybe.some(new TransactionStatus('PENDING')),
       new TransactionUserCreated('admin'),
       new TransactionUserUpdated('admin'),
     )
