@@ -1,4 +1,6 @@
 import { Transaction } from 'src/Context/Backoffice/Transaction/domain/Transaction'
+import { Maybe } from 'src/Context/Shared/domain/Maybe'
+
 import { TransactionCreatorRequest } from 'src/Context/Backoffice/Transaction/application/TransactionCreatorRequest'
 
 import { TransactionId } from 'src/Context/Backoffice/Transaction/domain/TransactionId'
@@ -33,7 +35,7 @@ export class TransactionMother {
     invoiceNumber: TransactionInvoiceNumber,
     amount: TransactionAmount,
     total: TransactionTotal,
-    status: TransactionStatus,
+    status: Maybe<TransactionStatus>,
     userCreated: TransactionUserCreated,
     userUpdated: TransactionUserUpdated,
     createdAt?: TransactionCreatedAt,
@@ -50,7 +52,7 @@ export class TransactionMother {
       new TransactionInvoiceNumber(request.invoice_number),
       new TransactionAmount(request.amount),
       new TransactionTotal(request.total),
-      new TransactionStatus(request.status),
+      Maybe.some(new TransactionStatus(request.status)),
       new TransactionUserCreated(request.user_created),
       new TransactionUserUpdated(request.user_updated),
       new TransactionCreatedAt(request.created_at),
@@ -66,7 +68,7 @@ export class TransactionMother {
       TransactionInvoiceNumberMother.random(),
       TransactionAmountMother.random(),
       TransactionTotalMother.random(),
-      TransactionStatusMother.random(),
+      Maybe.some(TransactionStatusMother.random()),
       TransactionUserCreatedMother.random(),
       TransactionUserUpdatedMother.random(),
       TransactionCreatedAtMother.random(),
