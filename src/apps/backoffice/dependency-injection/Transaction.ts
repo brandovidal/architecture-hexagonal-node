@@ -10,13 +10,18 @@ import TransactionPostController from '../controllers/TransactionPostController'
 import TransactionPutController from '../controllers/TransactionPutController'
 import TransactionDeleteController from '../controllers/TransactionDeleteController'
 
-import { TypeOrmTransactionRepository } from '../../../Context/Backoffice/Transaction/infraestructure/persistence/TypeOrmTransactionRepository'
-import { TypeOrmClientFactory } from '../../../Context/Shared/infraestructure/persistence/typeorm/TypeOrmClientFactory'
+// import { TypeOrmTransactionRepository } from '../../../Context/Backoffice/Transaction/infraestructure/persistence/TypeOrmTransactionRepository'
+// import { TypeOrmClientFactory } from '../../../Context/Shared/infraestructure/persistence/typeorm/TypeOrmClientFactory'
+
+import { MongoClientFactory } from '../../../Context/Shared/infraestructure/persistence/mongo/MongoClientFactory'
+import { MongoTransactionRepository } from '../../../Context/Backoffice/Transaction/infraestructure/persistence/MongoTransactionRepository'
 
 const container = new Container()
 
-container.bind(TypeOrmClientFactory).toSelf()
-container.bind('Backoffice.Transaction.domain.TransactionRepository').to(TypeOrmTransactionRepository)
+// container.bind(TypeOrmClientFactory).toSelf()
+container.bind(MongoClientFactory).toSelf()
+// container.bind('Backoffice.Transaction.domain.TransactionRepository').to(TypeOrmTransactionRepository)
+container.bind('Backoffice.Transaction.domain.TransactionRepository').to(MongoTransactionRepository)
 
 container.bind('Backoffice.Transaction.application.TransactionReader').to(TransactionReader)
 container.bind(TransactionsGetController).toSelf()
