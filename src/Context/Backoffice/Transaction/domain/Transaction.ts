@@ -32,6 +32,7 @@ export class Transaction {
   createdAt?: TransactionCreatedAt
   updatedAt?: TransactionUpdatedAt
 
+  // TODO: implement Maybe Pattern
   constructor (
     id: TransactionId,
     sellerDomain: TransactionSellerDomain,

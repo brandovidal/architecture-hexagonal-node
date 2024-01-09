@@ -27,11 +27,10 @@ export abstract class MongoRepository<T extends AggregateRoot, D extends Documen
   protected async persist (aggregateRoot: T): Promise<void> {
     const collection = await this.collection()
 
-    // const document = { ...aggregateRoot.toPrimitives(), _id: id, id: undefined }
     const document = { ...aggregateRoot.toPrimitives() }
 
-    await collection.insertOne(document)
-    // await collection.updateOne({ _id: id }, { $set: document }, { upsert: true })
+    // await collection.insertOne(document)
+    await collection.updateOne({ id: document.id }, { $set: document }, { upsert: true })
   }
 
   protected async searchByFilters (filter: Filter<D> = {}, options?: FindOptions) {

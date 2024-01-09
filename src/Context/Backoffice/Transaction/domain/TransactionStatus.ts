@@ -9,10 +9,10 @@ export enum TransactionStatusType {
 }
 
 export class TransactionStatus extends StringValueObject {
-  constructor (value: string, omitValidation = false) {
-    super(value)
+  constructor (value?: string) {
+    super(value!)
 
-    if (!omitValidation) {
+    if (value !== undefined && value !== null) {
       this.ensureIsValidStatus(value)
     }
   }
