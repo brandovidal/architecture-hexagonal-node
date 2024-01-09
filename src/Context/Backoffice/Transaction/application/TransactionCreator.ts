@@ -17,6 +17,8 @@ import { TransactionUserUpdated } from '../domain/TransactionUserUpdated'
 import { TransactionCreatedAt } from '../domain/TransactionCreatedAt'
 import { TransactionUpdatedAt } from '../domain/TransactionUpdatedAt'
 
+import { Maybe } from '../../../Shared/domain/Maybe'
+
 @injectable()
 export default class TransactionCreator {
   constructor (@inject('Backoffice.Transaction.domain.TransactionRepository') private readonly repository: TransactionRepository) {}
@@ -31,7 +33,7 @@ export default class TransactionCreator {
       new TransactionInvoiceNumber(request.invoice_number),
       new TransactionAmount(request.amount),
       new TransactionTotal(request.total),
-      new TransactionStatus(request.status),
+      Maybe.some(new TransactionStatus(request.status)),
       new TransactionUserCreated(request.user_created),
       new TransactionUserUpdated(request.user_updated),
       new TransactionCreatedAt(request.created_at),

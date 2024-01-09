@@ -1,5 +1,3 @@
-import { type ObjectId } from '../../../Shared/domain/value-object/ObjectId'
-
 import { type TransactionId } from './TransactionId'
 import { type TransactionInvoiceNumber } from './TransactionInvoiceNumber'
 import { type TransactionKind } from './TransactionKind'
@@ -11,6 +9,9 @@ import { type TransactionUserCreated } from './TransactionUserCreated'
 import { type TransactionUserUpdated } from './TransactionUserUpdated'
 import { type TransactionCreatedAt } from './TransactionCreatedAt'
 import { type TransactionUpdatedAt } from './TransactionUpdatedAt'
+
+import { type ObjectId } from '../../../Shared/domain/value-object/ObjectId'
+import { type Maybe } from '../../../Shared/domain/Maybe'
 
 export class Transaction {
   _id!: ObjectId
@@ -24,7 +25,7 @@ export class Transaction {
   amount!: TransactionAmount
   total: TransactionTotal
 
-  status: TransactionStatus
+  status: Maybe<TransactionStatus>
 
   userCreated?: TransactionUserCreated
   userUpdated?: TransactionUserUpdated
@@ -40,7 +41,7 @@ export class Transaction {
     invoiceNumber: TransactionInvoiceNumber,
     amount: TransactionAmount,
     total: TransactionTotal,
-    status: TransactionStatus,
+    status: Maybe<TransactionStatus>,
     userCreated?: TransactionUserCreated,
     userUpdated?: TransactionUserUpdated,
     createdAt?: TransactionCreatedAt,
@@ -67,7 +68,7 @@ export class Transaction {
       invoice_number: this.invoiceNumber.value,
       amount: this.amount.value,
       total: this.total.value,
-      status: this.status?.value,
+      status: this.status.toPrimitive()?.value,
       user_created: this.userCreated?.value,
       user_updated: this.userUpdated?.value,
       created_at: this.createdAt?.value,
