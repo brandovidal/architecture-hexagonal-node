@@ -26,7 +26,7 @@ export default class TransactionUpdator {
       new TransactionInvoiceNumber(invoice_number),
       new TransactionAmount(amount),
       new TransactionTotal(total),
-      new TransactionStatus(status),
+      new TransactionStatus(status, true),
       new TransactionUserCreated(user_created),
       new TransactionUserUpdated(user_updated),
       undefined,

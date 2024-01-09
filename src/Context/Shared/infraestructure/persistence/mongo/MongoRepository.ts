@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/space-before-function-paren */
-import type { Filter, Collection, FindOptions } from 'mongodb'
+import type { Filter, Collection, FindOptions, Document } from 'mongodb'
 import { type AggregateRoot } from '../../../domain/AggregateRoot'
 
 import { injectable, unmanaged } from 'inversify'
@@ -7,7 +7,7 @@ import { injectable, unmanaged } from 'inversify'
 import { MongoClientFactory } from './MongoClientFactory'
 
 @injectable()
-export abstract class MongoRepository<T extends AggregateRoot> {
+export abstract class MongoRepository<T extends AggregateRoot, D extends Document> {
   context: string
 
   constructor (@unmanaged() readonly _context: string) {
@@ -19,7 +19,7 @@ export abstract class MongoRepository<T extends AggregateRoot> {
     return MongoClientFactory.getClientOrFail(this.context)
   }
 
-  protected async collection (): Promise<Collection<T>> {
+  protected async collection (): Promise<Collection<D>> {
     const schema = this.collectionName()
     return this.client.collection(schema)
   }
@@ -34,10 +34,9 @@ export abstract class MongoRepository<T extends AggregateRoot> {
     // await collection.updateOne({ _id: id }, { $set: document }, { upsert: true })
   }
 
-  protected async searchByFilters (filter: Filter<T> = {}, options?: FindOptions<T>) {
+  protected async searchByFilters (filter: Filter<D> = {}, options?: FindOptions) {
     const collection = await this.collection()
-    const documents = collection.find(filter, options).toArray() as unknown as T[]
-    console.log('🚀 ~ file: MongoRepository.ts:40 ~ MongoRepository<T ~ searchByFilters ~ documents:', documents)
+    const documents = await collection.find(filter, options).toArray() as unknown as T[]
     return documents
   }
 }

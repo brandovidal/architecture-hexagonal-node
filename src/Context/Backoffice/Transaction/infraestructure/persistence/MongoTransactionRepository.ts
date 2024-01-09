@@ -8,14 +8,25 @@ import { MongoRepository } from '../../../../Shared/infraestructure/persistence/
 import { AppContextEnum } from '../../../../../apps/backoffice/AppContext'
 import { TransactionId } from '../../domain/TransactionId'
 
-// interface TransactionDocument {
-//   id: string
-//   seller_domain: string
-//   kind: string
-// }
+import { type FindOptions } from 'mongodb'
+
+interface TransactionDocument {
+  _id: number
+  id: string
+  sellerDomain: string
+  kind: string
+  invoiceNumber: string
+  amount: number
+  total: number
+  status: string
+  userCreated: string
+  userUpdated: string
+  createdAt: Date
+  updatedAt: Date
+}
 
 @injectable()
-export class MongoTransactionRepository extends MongoRepository<Transaction> implements TransactionRepository {
+export class MongoTransactionRepository extends MongoRepository<Transaction, TransactionDocument> implements TransactionRepository {
   constructor () {
     super(AppContextEnum.BACKOFFICE_TRANSACTION_CONTEXT)
   }
@@ -25,8 +36,9 @@ export class MongoTransactionRepository extends MongoRepository<Transaction> imp
   }
 
   public async searchAll (): Promise<Transaction[]> {
-    const options = { order: { createdAt: 'ASC' } }
-    return await this.searchByFilters(options)
+    const query = {}
+    const options: FindOptions = { sort: { created_at: -1 } }
+    return await this.searchByFilters(query, options)
   }
 
   public async update (transaction: Transaction): Promise<void> {
@@ -41,7 +53,9 @@ export class MongoTransactionRepository extends MongoRepository<Transaction> imp
       updated_at: transactionFormatted.updated_at
     }
 
-    await repository.findOneAndUpdate({ id: transaction.id }, transactionData)
+    const query = { id: transaction.id.value }
+
+    await repository.findOneAndUpdate(query, { $set: transactionData })
   }
 
   public async delete (id: string): Promise<void> {

@@ -7,7 +7,7 @@ import { injectable } from 'inversify'
 export class MongoClientFactory {
   private static readonly clients: Record<string, Db> = {}
 
-  static async createClient (contextName: string, config: MongoConfig, dbName?: string): Promise<Db> {
+  async createClient (contextName: string, config: MongoConfig, dbName?: string): Promise<Db> {
     let client = MongoClientFactory.getClient(contextName)
 
     if (client !== undefined || client !== null) {
